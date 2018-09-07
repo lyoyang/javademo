@@ -26,6 +26,13 @@
             <artifactId>guava</artifactId>
             <version>19.0</version>
         </dependency>
+<<<<<<< HEAD
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.7</version>
+        </dependency>
+=======
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -76,6 +83,7 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.16.Final</version>
         </dependency>
+<<<<<<< HEAD
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -83,6 +91,10 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+=======
+
+>>>>>>> 59dccc0796fe9a21cbf7d9241a2f7facceae8d62
+>>>>>>> c5ce72ad3e3370746001692c543609c916d202f4
     </dependencies>
 
 </project>
