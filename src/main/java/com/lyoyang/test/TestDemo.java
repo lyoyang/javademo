@@ -50,4 +50,11 @@ public class TestDemo {
         map.put("2", "bob");
     }
 
+    @Test
+    public void test_string() {
+        String str  = null;
+        String[] split = str.split(",");
+        System.out.println(split.length);
+    }
+
 }
