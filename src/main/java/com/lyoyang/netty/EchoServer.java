@@ -1,6 +1,7 @@
 package com.lyoyang.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -19,7 +20,7 @@ public class EchoServer {
 
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
         NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(eventExecutors).channel(NioServerSocketChannel.class)
@@ -29,6 +30,14 @@ public class EchoServer {
                 socketChannel.pipeline().addLast(new EchoServerHandler());
             }
         });
-//        serverBootstrap.bind().sync();
+        try {
+            ChannelFuture sync = serverBootstrap.bind().sync();
+            System.out.println(EchoServer.class.getName() + "started and listen on " + sync.channel().localAddress());
+            sync.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            eventExecutors.shutdownGracefully().sync();
+        }
     }
 }
