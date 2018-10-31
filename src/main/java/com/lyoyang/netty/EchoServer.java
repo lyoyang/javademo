@@ -16,9 +16,6 @@ public class EchoServer {
         this.port = port;
     }
 
-    public static void main(String[] args) {
-
-    }
 
     public void start() throws InterruptedException {
         NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
@@ -39,5 +36,10 @@ public class EchoServer {
         } finally {
             eventExecutors.shutdownGracefully().sync();
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        EchoServer echoServer = new EchoServer(8080);
+        echoServer.start();
     }
 }
