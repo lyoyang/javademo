@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 @Builder
 public class User {
     private int id;
@@ -18,6 +18,11 @@ public class User {
     private String city;
 
     private BigDecimal work;
+
+
+    public User() {
+        this.work = BigDecimal.ZERO;
+    }
 
     public User(int id) {
         this.id = id;
