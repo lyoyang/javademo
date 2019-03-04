@@ -20,6 +20,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuffer> {
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuffer in) throws Exception {
         System.out.println("receivedInfo.......");
         System.out.println("client received：" + in.toString());
+        channelHandlerContext.write("server received:" + in.toString());
     }
 
     @Override
