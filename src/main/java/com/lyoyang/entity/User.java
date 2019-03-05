@@ -20,6 +20,7 @@ public class User {
     private BigDecimal work;
 
 
+
     public User() {
         this.work = BigDecimal.ZERO;
     }
