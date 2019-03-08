@@ -15,16 +15,16 @@ public class NioDemo1 {
             allocate.put("jim,how are you?".getBytes());
             channel.write(allocate);
             allocate.clear();
-            int read = channel.read(allocate);
-            while (read != -1) {
-                System.out.println("read:" + read);
-                allocate.flip();
-                while (allocate.hasRemaining()) {
-                    System.out.println((char) allocate.get());
-                }
-                allocate.clear();
-                read = channel.read(allocate);
-            }
+//            int read = channel.read(allocate);
+//            while (read != -1) {
+//                System.out.println("read:" + read);
+//                allocate.flip();
+//                while (allocate.hasRemaining()) {
+//                    System.out.println((char) allocate.get());
+//                }
+//                allocate.clear();
+//                read = channel.read(allocate);
+//            }
             randomAccessFile.close();
         } catch (IOException e) {
             e.printStackTrace();

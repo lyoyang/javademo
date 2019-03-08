@@ -84,7 +84,7 @@ public class StreamDemo {
         users.add(u2);
         users.add(u3);
         users.add(u4);
-        int max = users.stream().mapToInt(User::getAge).max().getAsInt();
+        int max = users.stream().mapToInt(User::getId).max().getAsInt();
         System.out.println(max);
 
         //Collectors
