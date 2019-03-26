@@ -5,6 +5,7 @@ import com.lyoyang.entity.User;
 import com.lyoyang.utils.DateUtil;
 import org.testng.annotations.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class TestDemo {
@@ -35,14 +36,11 @@ public class TestDemo {
 
     @Test
     public void test2() {
-//        String accDate = "2019-01-01";
-//        Calendar instance = Calendar.getInstance();
-//        for(int i=0; i<=64; i++) {
-//            instance.setTime(DateUtil.getDateFromString(accDate));
-//            instance.add(Calendar.DATE, i);
-//            System.out.println(DateUtil.getStringFromDate(instance.getTime(), DateUtil.FORMAT_DATE));
-//        }
-//        System.out.println(2<<4);
+//        BigDecimal transAmount = new BigDecimal(80);
+//        BigDecimal feeValue = transAmount.multiply(new BigDecimal(0.007)).setScale(0, BigDecimal.ROUND_HALF_UP);
+//        System.out.println(feeValue);
+        Object o = "13433";
+        System.out.println(o.toString());
     }
 
 
