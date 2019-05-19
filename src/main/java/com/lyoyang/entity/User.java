@@ -1,6 +1,7 @@
 package com.lyoyang.entity;
 
 
+import com.lyoyang.annotationdemo.InitValue;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -14,6 +15,7 @@ public class User {
 
     private Integer age;
 
+    @InitValue(value = "bob")
     private String name;
     private String city;
 

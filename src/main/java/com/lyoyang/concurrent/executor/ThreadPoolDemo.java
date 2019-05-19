@@ -2,7 +2,7 @@ package com.lyoyang.concurrent.executor;
 
 import com.google.common.collect.Lists;
 import com.lyoyang.entity.User;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,8 +64,8 @@ public class ThreadPoolDemo {
         @Override
         public String call() throws Exception {
             User user = new User();
-            user.setId(num);
-            user.setAge(num + 10);
+//            user.setId(num);
+//            user.setAge(num + 10);
             System.out.println(user.toString());
             return "ok";
         }
@@ -109,8 +109,8 @@ public class ThreadPoolDemo {
         list.add(5);
         list.add(6);
         for(int i=0; i<list.size(); i++) {
-            user.setAge(i + 10);
-            user.setId(i);
+//            user.setAge(i + 10);
+//            user.setId(i);
             myEcecutor.submit(new MyRunner(user));
         }
         System.out.println("time:" + (System.currentTimeMillis() - begin));

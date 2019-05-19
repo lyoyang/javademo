@@ -16,8 +16,6 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
             ByteBuf in = (ByteBuf) msg;
             System.out.println("Server Received:" + in.toString(CharsetUtil.UTF_8));
             ctx.write(in.toString(CharsetUtil.UTF_8));
-            ctx.flush();
-            System.out.flush();
         } finally {
             ReferenceCountUtil.release(msg);
         }

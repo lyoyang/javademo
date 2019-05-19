@@ -1,7 +1,11 @@
 package com.lyoyang.test;
 
+import com.lyoyang.annotationdemo.AnnotationFactory;
+import com.lyoyang.entity.User;
 import com.lyoyang.utils.DateUtil;
+import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class TestDemo {
@@ -29,6 +33,14 @@ public class TestDemo {
         }
     }
 
+    @Test
+    public void test2() {
+//        BigDecimal transAmount = new BigDecimal(80);
+//        BigDecimal feeValue = transAmount.multiply(new BigDecimal(0.007)).setScale(0, BigDecimal.ROUND_HALF_UP);
+//        System.out.println(feeValue);
+        Object o = "13433";
+        System.out.println(o.toString());
+    }
 
 
 }

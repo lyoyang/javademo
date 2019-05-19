@@ -13,7 +13,8 @@ public class JavaVmStackSOF {
         JavaVmStackSOF javaVmStackSOF = new JavaVmStackSOF();
         try {
             javaVmStackSOF.stackLeak();
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            System.out.println("-------exception---------");
             System.out.println("stack length:" + javaVmStackSOF.stackLength);
             throw e;
         }
