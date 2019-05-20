@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 /**
  * @Auther: yangbing

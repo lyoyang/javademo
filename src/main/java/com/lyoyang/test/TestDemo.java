@@ -40,8 +40,6 @@ public class TestDemo {
         }
     }
 
-
-
     @Test
     public void test2() {
 //        BigDecimal transAmount = new BigDecimal(80);
