@@ -3,7 +3,7 @@ package com.lyoyang.test;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -16,7 +16,7 @@ import java.util.Random;
 public class JsonTest {
 
 
-    @Test
+
     public void test_parse() {
         String str = "[{\"type\":\"MERCHANT_ID\",\"account\":\"1495577562\",\"amount\":2,\"description\":\"现在支付分账\",\"result\":\"SUCCESS\",\"finish_time\":\"20180912113038\"},{\"type\":\"MERCHANT_ID\",\"account\":\"1512673471\",\"amount\":889,\"description\":\"解冻给分账方\",\"result\":\"SUCCESS\",\"finish_time\":\"20180912113038\"}]";
         JSONArray objects = JSON.parseArray(str);

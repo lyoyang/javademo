@@ -2,7 +2,7 @@ package com.lyoyang.concurrent.executor;
 
 import com.google.common.collect.Lists;
 import com.lyoyang.entity.User;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

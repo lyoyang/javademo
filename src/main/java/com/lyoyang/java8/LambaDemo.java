@@ -1,5 +1,8 @@
 package com.lyoyang.java8;
 
+
+import org.junit.Test;
+
 public class LambaDemo {
     public static void main(String[] args) {
         LambaDemo lamba = new LambaDemo();
@@ -15,6 +18,17 @@ public class LambaDemo {
         GreetingService greet2 = (message) -> System.out.println("hello-->" + message);
         greet.sayMessage("jim");
         greet2.sayMessage("bruce");
+    }
+
+    @Test
+    public void test() {
+        Convert<String,Integer> convert = (from) -> Integer.valueOf(from);
+        Integer res = convert.convert("123");
+        System.out.println(res);
+        Convert<String,Integer> c2 = Integer::valueOf;
+        Integer rr = c2.convert("345");
+        System.out.println(rr);
+
     }
 
     interface  MethodOperation{
