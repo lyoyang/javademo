@@ -5,9 +5,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.lyoyang.entity.CalculationDto;
+import com.lyoyang.entity.Student;
 import com.lyoyang.entity.User;
 import com.lyoyang.utils.CSVUtils;
 import com.lyoyang.utils.DateUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.io.File;
@@ -57,6 +59,51 @@ public class TestDemo {
 //                .multiply(new BigDecimal("0.7")).setScale(0, BigDecimal.ROUND_HALF_UP);
 //        System.out.println(ee);
 
+        WorkingHourReqDto reqDto = new WorkingHourReqDto();
+        reqDto.setUserCd("01");
+        ArrayList<WorkingHourDetailReqDto> list = new ArrayList<>();
+        WorkingHourDetailReqDto r1 = new WorkingHourDetailReqDto();
+        r1.setWorkingDate("2019-05-12");
+        r1.setWorkingHour("1.2");
+
+        WorkingHourDetailReqDto r2 = new WorkingHourDetailReqDto();
+        r2.setWorkingDate("2019-05-12");
+        r2.setWorkingHour("1.2");
+
+        WorkingHourDetailReqDto r3 = new WorkingHourDetailReqDto();
+        r3.setWorkingDate("2019-05-12");
+        r3.setWorkingHour("8.7");
+
+        WorkingHourDetailReqDto r4 = new WorkingHourDetailReqDto();
+        r4.setWorkingDate("2019-05-13");
+        r4.setWorkingHour("1.2");
+
+        WorkingHourDetailReqDto r5 = new WorkingHourDetailReqDto();
+        r5.setWorkingDate("2019-05-13");
+        r5.setWorkingHour("1.2");
+        list.add(r1);
+        list.add(r2);
+        list.add(r3);
+        list.add(r4);
+        list.add(r5);
+        reqDto.setDetailList(list);
+        Map<String, BigDecimal> workMap = new HashMap<>();
+        for(WorkingHourDetailReqDto detailReqDto : reqDto.getDetailList()) {
+            if(new BigDecimal("8").compareTo(new BigDecimal(detailReqDto.getWorkingHour())) < 0) {
+                System.out.println("工时范围[0-8]");
+            }
+            if(workMap.get(detailReqDto.getWorkingDate()) == null) {
+                workMap.put(detailReqDto.getWorkingDate(), BigDecimal.ZERO);
+            }
+            workMap.put(detailReqDto.getWorkingDate(), new BigDecimal(detailReqDto.getWorkingHour()).add(workMap.get(detailReqDto.getWorkingDate())));
+        }
+        Iterator<Map.Entry<String, BigDecimal>> iterator = workMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, BigDecimal> entry = iterator.next();
+            if(new BigDecimal("8").compareTo(entry.getValue()) < 0) {
+                System.out.println("总工时必须小于等于8小时");
+            }
+        }
     }
 
     @Test
@@ -95,14 +142,16 @@ public class TestDemo {
 //        System.out.println(new BigDecimal("100").compareTo(new BigDecimal(1200)));
         BigDecimal tmp = (new BigDecimal("100").subtract(new BigDecimal("20"))).multiply(new BigDecimal("0.7")).setScale(0, BigDecimal.ROUND_HALF_UP);
         BigDecimal m = new BigDecimal("2000").multiply((new BigDecimal("0.002").subtract(new BigDecimal("0.001"))));
-        System.out.println(tmp.add(m));
+//        System.out.println(tmp.add(m));
+        System.out.println(new BigDecimal("8").compareTo(new BigDecimal("8.0")));
     }
 
 
 
     @Test
     public void tetsHHH() {
-        System.out.println(fenToYuanBigDecimal(new BigDecimal("74956")));
+//        System.out.println(Float.valueOf("10.0").intValue());
+        System.out.println(new BigDecimal("1.9").setScale(0, BigDecimal.ROUND_HALF_UP));
     }
 
 
@@ -143,6 +192,8 @@ public class TestDemo {
         User user = new User();
         System.out.println(user.getCity().toString());
     }
+
+
 
 
 
