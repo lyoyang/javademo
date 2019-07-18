@@ -160,6 +160,26 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.kdxf.msc</groupId>
+            <artifactId>com-kdxf-msc</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kdxf.json</groupId>
+            <artifactId>com-kdxf-json</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>mp3spi</artifactId>
+            <version>1.9.5.4</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
