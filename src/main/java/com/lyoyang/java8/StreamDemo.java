@@ -1,7 +1,9 @@
 package com.lyoyang.java8;
 
 import com.google.common.collect.Lists;
+import com.lyoyang.entity.Student;
 import com.lyoyang.entity.User;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,6 +100,22 @@ public class StreamDemo {
         System.out.println("sum value:" + statistics.getSum());
         System.out.println("averge value:" + statistics.getAverage());
         System.out.println("num count:" + statistics.getCount());
-
     }
+
+    @Test
+    public void testStream() {
+        Student s1 = new Student();
+        s1.setId(1);
+        s1.setUsername("jim");
+        Student s2 = new Student();
+        s2.setId(2);
+        s2.setUsername("jim");
+        ArrayList<Student> list = new ArrayList<>();
+        list.add(s1);
+        list.add(s2);
+        List<Student> collect = list.stream().filter(s -> s.getId() % 2 == 0).collect(Collectors.toList());
+        System.out.println(list.stream().filter(s -> s.getId()%9 == 0).mapToInt(s -> s.getId()).summaryStatistics().getSum());
+    }
+
+
 }

@@ -24,7 +24,7 @@ public class NioBlockDemo2 {
             cChannel.write(buffer);
             buffer.clear();
         }
-//        cChannel.shutdownOutput();
+        cChannel.shutdownOutput();
         int len = 0;
         while ((len = cChannel.read(buffer)) != -1) {
             buffer.flip();

@@ -4,15 +4,27 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.lyoyang.entity.CalculationDto;
+import com.lyoyang.entity.Student;
 import com.lyoyang.entity.User;
+import com.lyoyang.enums.ChannelTypeMappingEnum;
+import com.lyoyang.utils.AccountAgeUtil;
+import com.lyoyang.utils.AmountUtils;
 import com.lyoyang.utils.CSVUtils;
 import com.lyoyang.utils.DateUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.concurrent.ThreadFactory;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TestDemo {
 
@@ -57,6 +69,51 @@ public class TestDemo {
 //                .multiply(new BigDecimal("0.7")).setScale(0, BigDecimal.ROUND_HALF_UP);
 //        System.out.println(ee);
 
+        WorkingHourReqDto reqDto = new WorkingHourReqDto();
+        reqDto.setUserCd("01");
+        ArrayList<WorkingHourDetailReqDto> list = new ArrayList<>();
+        WorkingHourDetailReqDto r1 = new WorkingHourDetailReqDto();
+        r1.setWorkingDate("2019-05-12");
+        r1.setWorkingHour("1.2");
+
+        WorkingHourDetailReqDto r2 = new WorkingHourDetailReqDto();
+        r2.setWorkingDate("2019-05-12");
+        r2.setWorkingHour("1.2");
+
+        WorkingHourDetailReqDto r3 = new WorkingHourDetailReqDto();
+        r3.setWorkingDate("2019-05-12");
+        r3.setWorkingHour("8.7");
+
+        WorkingHourDetailReqDto r4 = new WorkingHourDetailReqDto();
+        r4.setWorkingDate("2019-05-13");
+        r4.setWorkingHour("1.2");
+
+        WorkingHourDetailReqDto r5 = new WorkingHourDetailReqDto();
+        r5.setWorkingDate("2019-05-13");
+        r5.setWorkingHour("1.2");
+        list.add(r1);
+        list.add(r2);
+        list.add(r3);
+        list.add(r4);
+        list.add(r5);
+        reqDto.setDetailList(list);
+        Map<String, BigDecimal> workMap = new HashMap<>();
+        for(WorkingHourDetailReqDto detailReqDto : reqDto.getDetailList()) {
+            if(new BigDecimal("8").compareTo(new BigDecimal(detailReqDto.getWorkingHour())) < 0) {
+                System.out.println("工时范围[0-8]");
+            }
+            if(workMap.get(detailReqDto.getWorkingDate()) == null) {
+                workMap.put(detailReqDto.getWorkingDate(), BigDecimal.ZERO);
+            }
+            workMap.put(detailReqDto.getWorkingDate(), new BigDecimal(detailReqDto.getWorkingHour()).add(workMap.get(detailReqDto.getWorkingDate())));
+        }
+        Iterator<Map.Entry<String, BigDecimal>> iterator = workMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, BigDecimal> entry = iterator.next();
+            if(new BigDecimal("8").compareTo(entry.getValue()) < 0) {
+                System.out.println("总工时必须小于等于8小时");
+            }
+        }
     }
 
     @Test
@@ -93,16 +150,79 @@ public class TestDemo {
 //        Integer l2= new Integer(5);
 //        System.out.println(l1 > l2);
 //        System.out.println(new BigDecimal("100").compareTo(new BigDecimal(1200)));
-        BigDecimal tmp = (new BigDecimal("100").subtract(new BigDecimal("20"))).multiply(new BigDecimal("0.7")).setScale(0, BigDecimal.ROUND_HALF_UP);
-        BigDecimal m = new BigDecimal("2000").multiply((new BigDecimal("0.002").subtract(new BigDecimal("0.001"))));
-        System.out.println(tmp.add(m));
+//        BigDecimal tmp = (new BigDecimal("100").subtract(new BigDecimal("20"))).multiply(new BigDecimal("0.7")).setScale(0, BigDecimal.ROUND_HALF_UP);
+//        BigDecimal m = new BigDecimal("2000").multiply((new BigDecimal("0.002").subtract(new BigDecimal("0.001"))));
+//        System.out.println(tmp.add(m));
+//        System.out.println(new BigDecimal("8").compareTo(new BigDecimal("8.0")));
+        System.out.println(BigDecimal.valueOf(1L).toPlainString());
     }
 
 
 
     @Test
-    public void tetsHHH() {
-        System.out.println(fenToYuanBigDecimal(new BigDecimal("74956")));
+    public void tetsHHH() throws Exception {
+//        System.out.println(Float.valueOf("10.0").intValue());
+//        System.out.println(new BigDecimal("1.9").setScale(0, BigDecimal.ROUND_HALF_UP));
+        String str = "{\"yl_account_trans\":{\"amount\":\"200\",\"chTransId\":\"123\",\"createTime\":\"2019-05-23 12:23:12\",\"fee\":\"12\",\"feeShoulder\":\"123\",\"mchId\":\"445454df\",\"mchOrderNo\":\"35454545454545\",\"payerAccName\":\"jim\"}}";
+//        Map map = JSON.parseObject(str, Map.class);
+//        System.out.println(map.toString());
+
+//        LocalDateTime now = LocalDateTime.now();
+//        String dateStr = DateUtil.getDateStr(now, DateUtil.FORMAT_DATE);
+//        System.out.println(dateStr);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("123");
+        list.add("345");
+        boolean b = list.stream().anyMatch(s -> s.equals("12345"));
+//        System.out.println(b);
+//        System.out.println(AmountUtils.changeF2Y(0L).toString());
+//        ChannelTypeMappingEnum channelTypeMappingEnum = ChannelTypeMappingEnum.buildByTypeCode("90");
+//        System.out.println(ChannelTypeMappingEnum.ALIPAY.equals(channelTypeMappingEnum));
+//        System.out.println(LocalDateTime.now().toLocalDate());
+//        long d = 12l;
+//        System.out.println((int)d);
+//        Instant parse1 = Instant.parse("201902051234");
+//        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy年MM月");
+//        LocalDate parse = LocalDate.parse("201902051234");
+//        System.out.println(formatters);
+//        Map<String, String> accountAge = AccountAgeUtil.getAccountAge(3, LocalDate.now());
+//        System.out.println(accountAge);
+//        String format = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
+//        System.out.println(format);
+//        String sss = "2019,2018";
+//        String[] split = sss.split(",");
+//        System.out.println("2019-09-25".substring(0,7));
+//        System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+//        String beginDate = LocalDate.parse("2019-06-12").with(TemporalAdjusters.firstDayOfMonth()).format(DateTimeFormatter.ISO_DATE);
+//        System.out.println(beginDate);
+//        String endDate = LocalDate.parse("2019-06-12").with(TemporalAdjusters.lastDayOfMonth()).format(DateTimeFormatter.ISO_DATE);
+//        System.out.println(endDate);
+//        Map<String, LongSummaryStatistics> params = new HashMap<>();
+//        LongSummaryStatistics longSummaryStatistics = params.get("123");
+//        System.out.println("2019-05-23".substring(5,"2019-05-23".length()));
+//        String beginDate = LocalDate.parse("2019-05-23").with(TemporalAdjusters.firstDayOfYear()).format(DateTimeFormatter.ofPattern("yyyy-MM"));
+//        System.out.println(beginDate);
+//        String endDate = LocalDate.parse("2019-05-23").with(TemporalAdjusters.lastDayOfYear()).format(DateTimeFormatter.ofPattern("yyyy-MM"));
+//        System.out.println(endDate);
+
+//        Date dateFromString = DateUtil.getDateFromString("2019-09", DateUtil.FORMAT_YEARMONTH);
+//        Instant instant = dateFromString.toInstant();
+//        ZoneId zoneId = ZoneId.systemDefault();
+//        LocalDate localDate = instant.atZone(zoneId).toLocalDate();
+//        System.out.println(localDate.toString());
+//        String firstTimeOfDay = DateUtil.getEndTimeOfDay("2019-05-23", DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+//        System.out.println(firstTimeOfDay);
+//        System.out.println(DateUtil.getTodayMinuteBefore(1).format(DateTimeFormatter.ISO_DATE_TIME));
+
+//        System.out.println(LocalDate.parse("20190302", DateTimeFormatter.BASIC_ISO_DATE).format(DateTimeFormatter.ofPattern("yyyy-MM")));
+
+//        System.out.println(LocalDate.now().minusDays(1).toString());
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime four = now.plusDays(4);
+        Duration between = Duration.between(four, now);
+        System.out.println(between.toDays());
+
     }
 
 
@@ -129,20 +249,30 @@ public class TestDemo {
 
     @Test
     public void testExportCsv() {
-//        File file = new File("D:/test.csv");
-//        List<String> list = new ArrayList<>();
-//        list.add("jim");
-//        list.add("bob");
-//        list.add("nan");
-//        CSVUtils.exportCsv(file, list);
-//        List<String> ll = Lists.newArrayList("12232");
-//        System.out.println(ll);
-        System.out.println(Integer.valueOf("123"));
-//        new Integer(1).compareTo(Integer.getInteger("12323"));
-
-        User user = new User();
-        System.out.println(user.getCity().toString());
+        File file = new File("D:/test.csv");
+        List<String> list = new ArrayList<>();
+        list.add("jim");
+        list.add("bob");
+        list.add("nan");
+        CSVUtils.exportCsv(file, list);
     }
+
+
+    @Test
+    public void testLocalDate() {
+        List<Map<String, String>> accountAge = AccountAgeUtil.getAccountAge(30, LocalDate.now());
+        System.out.println("hell0".substring(3));
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+                .setNameFormat("demo-pool-%d").build();
+
+    }@Test
+
+
+    public void testDedcimal() {
+        System.out.println(BigDecimal.valueOf(400L).negate().toPlainString());
+    }
+
+
 
 
 

@@ -7,7 +7,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
-import java.nio.ByteBuffer;
 
 @ChannelHandler.Sharable
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
@@ -15,8 +14,8 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(Unpooled.copiedBuffer("Hello Netty,this is my first demo", CharsetUtil.UTF_8));
-
     }
+
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf in) throws Exception {

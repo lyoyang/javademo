@@ -3,6 +3,9 @@ package com.lyoyang.utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -1029,4 +1032,38 @@ public class DateUtil extends Object {
         calendar.add(Calendar.DATE, -1);
         return  calendar.getTime();
     }
+
+    public static String getDateStr(LocalDateTime date, String format){
+        return date.format(DateTimeFormatter.ISO_DATE);
+    }
+
+    public static String getFirstTimeOfDay(String s, DateTimeFormatter dateTimeFormatter) {
+        LocalDateTime localDateTime = LocalDateTime.parse(s + " 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return localDateTime.format(dateTimeFormatter);
+    }
+
+    public static String getEndTimeOfDay(String s, DateTimeFormatter dateTimeFormatter) {
+        LocalDateTime localDateTime = LocalDateTime.parse(s + " 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return localDateTime.format(dateTimeFormatter);
+    }
+
+    public static LocalDateTime getTodayEndTime() {
+        return LocalDateTime.parse(LocalDate.now().toString() + " 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    public static LocalDateTime getTodayMinuteBefore(int hours) {
+        LocalDateTime localDateTime = LocalDateTime.parse(LocalDate.now().toString() + " 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return localDateTime.minusHours(hours);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
