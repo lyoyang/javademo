@@ -18,6 +18,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.MessageFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
@@ -270,6 +271,28 @@ public class TestDemo {
 
     public void testDedcimal() {
         System.out.println(BigDecimal.valueOf(400L).negate().toPlainString());
+        String msg = "oh,{0} is ''a'' pig";
+        String format = MessageFormat.format(msg, "lisi");
+        System.out.println(format);
+        System.out.println(MessageFormat.format("{0}", 12345678.9));
+        System.out.println(MessageFormat.format("oh, {0, number, #.##} is a good number", Double.valueOf("3.23445")));
+        Long d = 12L;
+        new Long(23l);
+        int[] ss = new int[] {1,2};
+
+    }
+
+
+    @Test
+    public void test121() {
+        int a = 3;
+        if (a > 0) {
+            a = 6;
+        } else if (a < 0) {
+            a = 90;
+        } else {
+            System.out.println(a);
+        }
     }
 
 
