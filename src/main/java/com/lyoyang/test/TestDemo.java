@@ -17,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -271,6 +272,27 @@ public class TestDemo {
     public void testDedcimal() {
         System.out.println(BigDecimal.valueOf(400L).negate().toPlainString());
     }
+
+
+
+
+    @Test
+    public void testJps() throws IOException {
+        int read = System.in.read();
+        System.out.println(read);
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        Student student = new Student();
+        student.setId(1);
+        student.setUsername("jim");
+        student = null;
+        System.gc();
+        int read = System.in.read();
+        System.out.println(read);
+    }
+
 
 
 
