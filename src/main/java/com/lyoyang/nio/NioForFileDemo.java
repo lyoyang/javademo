@@ -1,13 +1,19 @@
 package com.lyoyang.nio;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import io.netty.util.internal.StringUtil;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.text.MessageFormat;
+import java.util.List;
 
 /**
  * @Auther: yangbing
@@ -36,6 +42,14 @@ public class NioForFileDemo {
     }
 
 
+
+    @Test
+    public void testRedData() throws IOException {
+//        List<String> strings = Files.readLines(new File("D://pos_20190812.txt"), Charsets.UTF_8);
+//        String tmpStr = strings.get(1);
+//        String[] split = tmpStr.split(",");
+        System.out.println(Math.abs(-0.234D));
+    }
 
 
 
