@@ -27,6 +27,10 @@ public class User {
         this.work = BigDecimal.ZERO;
     }
 
+    public User(Integer age, int id) {
+        this.age = age;
+    }
+
     public User(int id) {
         this.id = id;
     }

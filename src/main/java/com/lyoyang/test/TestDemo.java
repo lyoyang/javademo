@@ -301,8 +301,7 @@ public class TestDemo {
 
     @Test
     public void testJps() throws IOException {
-        int read = System.in.read();
-        System.out.println(read);
+        System.out.println(((-16)>>>2));
     }
 
 
