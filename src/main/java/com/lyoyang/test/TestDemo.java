@@ -65,6 +65,4 @@ public class TestDemo {
         System.out.println(MessageFormat.format("{0}", 12345678.9));
         System.out.println(MessageFormat.format("oh, {0, number, #.##} is a good number", Double.valueOf("3.23445")));
     }
-
-
 }
