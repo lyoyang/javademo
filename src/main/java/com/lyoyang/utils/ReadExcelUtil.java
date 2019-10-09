@@ -1,5 +1,6 @@
 package com.lyoyang.utils;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.*;
@@ -75,7 +76,7 @@ public class ReadExcelUtil {
         }
         Map<Integer, Map<Integer, Object>> content = new HashMap<Integer, Map<Integer, Object>>();
         try{
-            Sheet sheet = workbook.getSheetAt(1);
+            Sheet sheet = workbook.getSheetAt(0);
             //获取总行数
             int rowNum = sheet.getLastRowNum();
             int firstRowNum = sheet.getFirstRowNum();
@@ -108,7 +109,12 @@ public class ReadExcelUtil {
             switch(cell.getCellType()){
                 //数字
                 case Cell.CELL_TYPE_NUMERIC:
-                    cellObject = String.valueOf(cell.getNumericCellValue());
+                    if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                        Date date = cell.getDateCellValue();
+                        cellObject = com.lyoyang.utils.DateUtil.getStringFromDate(date, com.lyoyang.utils.DateUtil.FORMAT_DATE);
+                    } else {
+                        cellObject = String.valueOf(cell.getNumericCellValue());
+                    }
                     break;
                 //字符串
                 case Cell.CELL_TYPE_STRING:

@@ -2,6 +2,7 @@ package com.lyoyang.concurrent.executor;
 
 import com.google.common.collect.Lists;
 import com.lyoyang.entity.User;
+import lombok.ToString;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ public class ThreadPoolDemo {
 
     private static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
 
+    private static int corePoolSize  = Runtime.getRuntime().availableProcessors() * 2;
+
+    private static ExecutorService commonThreadPool = new ThreadPoolExecutor(corePoolSize, corePoolSize, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(512), new ThreadPoolExecutor.DiscardPolicy());
 
     private class NumberRunner implements Callable<String> {
 
@@ -27,7 +31,8 @@ public class ThreadPoolDemo {
 
             double res = 0;
             try {
-                res = 9/num;
+//                res = 9/num;
+                System.out.println("线程执行中。。。。。。");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -160,9 +165,12 @@ public class ThreadPoolDemo {
 
 
     @Test
-    public void test_exception() {
+    public void test_exception() throws InterruptedException {
         List<Integer> list = Arrays.asList(1, 23, 3, 0, 4, 7, 8);
         List<Callable<String>> callables = new ArrayList<Callable<String>>();
+        User user = new User();
+        user.setName("jim");
+        System.out.println("*******开始**********");
         for(Integer i : list) {
             callables.add(new NumberRunner(i));
         }
@@ -171,8 +179,20 @@ public class ThreadPoolDemo {
         } catch (InterruptedException e) {
             System.out.println("主线程出错了。。。。。。");
         }
+
+        Thread.sleep(60000L);
+        user.setName("bob");
+        System.out.println(user.toString());
+        System.out.println("休眠结束。。。");
+
     }
 
+
+    @Test
+    public void testCorePoolSize() {
+        int i = Runtime.getRuntime().availableProcessors();
+        System.out.println(i);
+    }
 
 
 }
