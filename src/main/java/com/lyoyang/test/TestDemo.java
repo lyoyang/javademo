@@ -2,6 +2,7 @@ package com.lyoyang.test;
 
 import com.google.common.io.Files;
 import com.lyoyang.utils.DateUtil;
+import javafx.concurrent.Task;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 
@@ -87,8 +88,8 @@ public class TestDemo {
 
     @Test
     public void CommonTest2() throws IOException, InterruptedException {
-        Date dateFromString = DateUtil.getDateFromString("2019-09-24", DateUtil.FORMAT_DATE);
-        for (int i = 1; i <= 23; i++) {
+        Date dateFromString = DateUtil.getDateFromString("2019-08-27", DateUtil.FORMAT_DATE);
+        for (int i = 1; i <= 10; i++) {
             Date certainDate = DateUtil.getCertainDate(dateFromString, -i);
             System.out.println(DateUtil.getStringFromDate(certainDate, DateUtil.FORMAT_DATE));
         }
@@ -97,10 +98,19 @@ public class TestDemo {
 
     @Test
     public void CommonTest3() throws IOException, InterruptedException {
-       while (true) {
-           System.out.println("hello");
-           Thread.sleep(3000L);
-       }
+        Map<String, Object> map = new HashMap<>();
+//        System.out.println(Math.floorDiv(-9, 4));
+//        System.out.println(11 >> 2);
+//        System.out.println(Math.floorMod(7, 4));
+//        System.out.println(Math.floorMod(-7, 4));
+//        System.out.println(Math.floorMod(7, -4));
+//        System.out.println(Math.floorMod(-7, -4));
+//        System.out.println(9 ^ -7);
+
+//        System.out.println("双免：" + new BigDecimal("32800").multiply(new BigDecimal("0.003")).setScale(0, BigDecimal.ROUND_UP));
+//        System.out.println("非双免：" + new BigDecimal("").multiply(new BigDecimal("")).setScale(0, BigDecimal.ROUND_UP));
+//        System.out.println("70".equals(null));
+        System.out.println("1".equals(new Byte("1").toString()));
 
     }
 
