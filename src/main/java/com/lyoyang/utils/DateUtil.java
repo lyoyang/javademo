@@ -1057,6 +1057,11 @@ public class DateUtil extends Object {
     }
 
 
+    public static String getCertainDate(int days, String format) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, days);
+        return getStringFromDate(calendar.getTime(), format);
+    }
 
 
 

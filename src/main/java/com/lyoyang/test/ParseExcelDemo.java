@@ -1,18 +1,18 @@
 package com.lyoyang.test;
 
+import com.alibaba.excel.EasyExcelFactory;
+import com.alibaba.fastjson.JSONObject;
+import com.lyoyang.entity.FeeConfig;
 import com.lyoyang.utils.ReadExcelUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.io.*;
+import java.math.BigDecimal;
+import java.text.MessageFormat;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,33 +31,34 @@ public class ParseExcelDemo {
     @Test
     public void testParseExcel() throws IOException {
         try {
-            File file = new File("D://temp.xlsx");
+            File file = new File("D://fee.xlsx");
             Workbook workbook = ReadExcelUtil.getWorkbook(file);
             Sheet sheetAt1 = workbook.getSheetAt(0);
             Map<Integer, Map<Integer, Object>> integerMapMap = ReadExcelUtil.readExcelConetentBySheet(sheetAt1);
             Set<Map.Entry<Integer, Map<Integer, Object>>> entries = integerMapMap.entrySet();
             StringBuilder stringBuilder = new StringBuilder();
+            Set<String> set = new TreeSet<>();
             for (Map.Entry<Integer, Map<Integer, Object>> entry : entries) {
                 Map<Integer, Object> value = entry.getValue();
-                String mchId = value.get(0).toString();
-                String mchName = value.get(1).toString();
-                String subMchId = value.get(2).toString();
-                String ultimeMchId = value.get(3).toString();
-                String ultimeMchName = value.get(4).toString();
-                String belongArea = value.get(5).toString();
-                String ultimeTrade = value.get(6).toString();
-                String businessManager = value.get(7).toString();
-                stringBuilder.append("(").append("'").append(mchId).append("',")
-                        .append("'").append(mchName).append("',")
-                        .append("'").append(subMchId).append("',")
-                        .append("'").append(ultimeMchId).append("',")
-                        .append("'").append(ultimeMchName).append("',")
-                        .append("'").append(belongArea).append("',")
-                        .append("'").append(ultimeTrade).append("',")
-                        .append("'").append(businessManager).append("'")
-                        .append("),").append("\n");
+                if (StringUtils.isNotEmpty(value.get(5).toString())) {
+                    String sql = "update fee_config set PARTNER_INCOME_RATIO = {0} where mch_id=''{1}'' and channel_id = ''{2}'';";
+                    String mchId = value.get(0).toString().replace("\t", "");
+                    String fee = value.get(4).toString();
+                    String channelName = value.get(2).toString().replace("\t", "");
+                    String channelId = "";
+                    if ("支付宝".equals(channelName)) {
+                        channelId = "12";
+                    } else {
+                        channelId = "13";
+                    }
+                    set.add(fee);
+                    String format = MessageFormat.format(sql, new BigDecimal(fee).divide(new BigDecimal("100")).toPlainString(), mchId, channelId);
+                    stringBuilder.append(format)
+                    .append("\n");
+                }
             }
-            File file1 = new File("D://day.sql");
+            String s = JSONObject.toJSONString(set);
+            File file1 = new File("D://fee.sql");
             FileOutputStream fileOutputStream = new FileOutputStream(file1);
             fileOutputStream.write(stringBuilder.toString().getBytes());
         } catch (IOException e) {
@@ -67,30 +68,73 @@ public class ParseExcelDemo {
 
 
     @Test
-    public void tetsThread() {
-//        Future<String> test = parseExecutor.submit(new ParseExcelRunner("test"));
-//        if(test.isDone()) {
-//            System.out.println("ok");
-//        } else {
-//            System.out.println("no");
-//        }
-        System.out.println("hello");
-        System.out.println(StringUtils.isNotEmpty(""));
+    public void parseMerchant() {
+        try {
+            File file = new File("E://测试文档/10.22.xlsx");
+            Workbook workbook = ReadExcelUtil.getWorkbook(file);
+            Sheet sheetAt1 = workbook.getSheetAt(0);
+            Map<Integer, Map<Integer, Object>> integerMapMap = ReadExcelUtil.readExcelConetentBySheet(sheetAt1);
+            Set<Map.Entry<Integer, Map<Integer, Object>>> entries = integerMapMap.entrySet();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("INSERT INTO merchant_info (MCH_ID, MCH_NAME, SUB_MCH_ID, ULTIMATE_MCH_ID, ULTIMATE_MCH_NAME, BELONG_AREA, ULTIMATE_TRADE, BUSINESS_MANAGER) VALUES");
+            for (Map.Entry<Integer, Map<Integer, Object>> entry : entries) {
+                Map<Integer, Object> value = entry.getValue();
+                String mchId = "''";
+                String finalMchId = "''";
+                String subMchId = "''";
+                String mchName = "''";
+                String finalMchName = "''";
+                String belongArea = "''";
+                String finalTrade = "''";
+                String businessManager = "''";
+                finalMchId = "'" + value.get(2).toString() + "'";
+                mchName = "'" + value.get(3).toString() + "'";
+                finalMchName = "'" + value.get(4).toString() + "'";
+                finalTrade = "'" + value.get(6).toString() + "'";
+                businessManager = "'" + value.get(7).toString() + "'";
+                if (StringUtils.isNotEmpty(value.get(0).toString())) {
+                    mchId = "'" + value.get(0).toString() + "'";
+                }
+                if (StringUtils.isNotEmpty(value.get(1).toString())) {
+                    subMchId = "'" + value.get(1).toString() + "'";
+                }
+                if (StringUtils.isNotEmpty(value.get(5).toString())) {
+                    belongArea = "'" + value.get(5).toString() + "'";
+                }
+                String sql = "({0},{1},{2},{3},{4},{5},{6},{7}),";
+                String format = MessageFormat.format(sql, mchId, mchName, subMchId, finalMchId, finalMchName, belongArea, finalTrade, businessManager);
+                stringBuilder.append(format)
+                        .append("\n");
+            }
+            File outFile = new File("E:\\测试文档\\merchant.sql");
+            FileOutputStream fileOutputStream = new FileOutputStream(outFile);
+            fileOutputStream.write(stringBuilder.toString().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    class ParseExcelRunner implements Callable<String> {
-
-        private String name;
-
-        public ParseExcelRunner(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String call() throws Exception {
-            return name;
-        }
+    @Test
+    public void testParseExcelConfig() throws IOException {
+            File file = new File("E://测试文档/应用中心数据.xlsx");
+            Workbook workbook = ReadExcelUtil.getWorkbook(file);
+            Sheet sheetAt1 = workbook.getSheetAt(0);
+            Map<Integer, Map<Integer, Object>> integerMapMap = ReadExcelUtil.readExcelConetentBySheet(sheetAt1);
+            Set<Map.Entry<Integer, Map<Integer, Object>>> entries = integerMapMap.entrySet();
+            List<FeeConfig> feeConfigs = new ArrayList<>();
+            for (Map.Entry<Integer, Map<Integer, Object>> entry : entries) {
+                Map<Integer, Object> value = entry.getValue();
+                FeeConfig feeConfig = new FeeConfig();
+                feeConfig.setMchId(value.get(0).toString());
+                feeConfig.setDeviceId(value.get(2).toString());
+                feeConfig.setChannelId(value.get(3).toString());
+                feeConfigs.add(feeConfig);
+            }
+        System.out.println(feeConfigs.toString());
     }
+
+
+
 
 }
