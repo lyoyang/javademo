@@ -306,13 +306,11 @@ public class TestDemo {
 
 
     public static void main(String[] args) throws IOException {
-        Student student = new Student();
-        student.setId(1);
-        student.setUsername("jim");
-        student = null;
-        System.gc();
-        int read = System.in.read();
-        System.out.println(read);
+        int i = 100;
+        for (; i<10; ++i) {
+            System.out.println(1);
+        }
+        System.out.println(i);
     }
 
 
