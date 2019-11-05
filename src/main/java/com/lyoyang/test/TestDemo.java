@@ -117,7 +117,12 @@ public class TestDemo {
 //        System.out.println("双免：" + new BigDecimal("32800").multiply(new BigDecimal("0.003")).setScale(0, BigDecimal.ROUND_UP));
 //        System.out.println("非双免：" + new BigDecimal("").multiply(new BigDecimal("")).setScale(0, BigDecimal.ROUND_UP));
 //        System.out.println("70".equals(null));
-        System.out.println("1".equals(new Byte("1").toString()));
+//        System.out.println("1".equals(new Byte("1").toString()));
+        List<String> list = Arrays.asList("1", "2", "3", "4");
+        int i = 0;
+        for (int j = 0; j<list.size(); j++) {
+            list.set(++i, "23");
+        }
 
     }
 

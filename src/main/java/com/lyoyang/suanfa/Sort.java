@@ -45,11 +45,39 @@ public class Sort {
     }
 
 
+    public static void mergeSort(int[] nums, int begin, int end) {
+        if (begin >= end) return;
+        int mid = begin + (end - begin)/2;
+        mergeSort(nums, begin, mid);
+        mergeSort(nums, mid+1, end);
+        merge(nums, begin, mid, end);
+
+    }
+
+    public static void merge(int[] nums, int begin, int middle, int end) {
+        int i = begin;
+        int j = middle + 1;
+        int[] tmp = new int[end+1];
+        for (int k=begin; k<=end; k++) {
+            tmp[k] = nums[k];
+        }
+        for (int k=begin; k<=end; k++) {
+            if (i>middle) nums[k] = tmp[j++];
+            else if (j>end) nums[k] = tmp[i++];
+            else if (tmp[i] > tmp[j])  nums[k] = tmp[j++];
+            else nums[k] = tmp[i++];
+        }
+    }
+
+
+
+
     public static void main(String[] args) {
         int[] nums = {1,34,12,4,5,5,9};
         int[] nums2 = {1,3,12,13,15,25,39};
 //        bubbleSort(nums2, nums2.length);
-        insertSort(nums2, nums2.length);
+//        insertSort(nums2, nums2.length);
+        mergeSort(nums, 0, nums.length-1);
         print(nums);
     }
 
