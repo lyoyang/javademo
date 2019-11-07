@@ -77,18 +77,5 @@ public class PredicatesDemo {
 
 
 
-    static class RedApplePredicate implements ApplePredicate {
-
-        @Override
-        public boolean test(Apple apple) {
-            return "red".equals(apple.getColor());
-        }
-
-    }
-
-
-
-
-
 
 }

@@ -1,5 +1,8 @@
 package com.lyoyang.test;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.google.common.io.Files;
 import com.lyoyang.utils.DateUtil;
 import javafx.concurrent.Task;
@@ -11,6 +14,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class TestDemo {
@@ -110,8 +115,18 @@ public class TestDemo {
 //        System.out.println("双免：" + new BigDecimal("32800").multiply(new BigDecimal("0.003")).setScale(0, BigDecimal.ROUND_UP));
 //        System.out.println("非双免：" + new BigDecimal("").multiply(new BigDecimal("")).setScale(0, BigDecimal.ROUND_UP));
 //        System.out.println("70".equals(null));
-        System.out.println("1".equals(new Byte("1").toString()));
-
+//        System.out.println("1".equals(new Byte("1").toString()));
+//        File file = new File("E://测试文档/merchant.sql");
+//        file.delete();
+//        System.out.println(Math.random());
+//        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+        List<String> l1 = Arrays.asList("1", "2", "3");
+        List<String> l2 = Arrays.asList("1", "3", "4", "5");
+        Set<String> set = new HashSet<>();
+        set.addAll(l1);
+        set.addAll(l2);
+        Collections.sort();
+        System.out.println(set);
     }
 
 }
