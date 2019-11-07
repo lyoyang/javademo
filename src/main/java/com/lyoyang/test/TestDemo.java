@@ -100,6 +100,13 @@ public class TestDemo {
         }
 
     }
+    public static void main(String[] args) throws IOException {
+        int i = 100;
+        for (; i<10; ++i) {
+            System.out.println(1);
+        }
+        System.out.println(i);
+    }
 
     @Test
     public void CommonTest3() throws IOException, InterruptedException {

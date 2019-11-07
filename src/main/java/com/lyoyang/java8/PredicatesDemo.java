@@ -74,8 +74,4 @@ public class PredicatesDemo {
     interface ApplePredicate {
         boolean test();
     }
-
-
-
-
 }
