@@ -125,7 +125,6 @@ public class TestDemo {
         Set<String> set = new HashSet<>();
         set.addAll(l1);
         set.addAll(l2);
-        Collections.sort();
         System.out.println(set);
     }
 
