@@ -1,7 +1,5 @@
 package com.lyoyang.suanfa;
 
-import java.util.Arrays;
-
 /**
  * 排序
  */
@@ -75,6 +73,32 @@ public class Sort {
     }
 
 
+    public static void quickSort(int[] nums, int low, int height) {
+        if (height <= low) return;
+        int middle = getMiddle(nums, low, height);
+        quickSort(nums, low, middle-1);
+        quickSort(nums, middle+1, height);
+    }
+
+
+    public static int getMiddle(int[] nums, int low, int height) {
+        int i = low;
+        int p = height;
+        for (int k = low; k <= height; k++) {
+            if (nums[k] < nums[p]) {
+                int tmp = nums[k];
+                nums[k] = nums[i];
+                nums[i] = tmp;
+                i++;
+            }
+        }
+        int tmp = nums[p];
+        nums[p] = nums[i];
+        nums[i] = tmp;
+        return  i;
+    }
+
+
 
 
     public static void main(String[] args) {
@@ -82,15 +106,28 @@ public class Sort {
         int[] nums2 = {1,3,12,13,15,25,39};
 //        bubbleSort(nums2, nums2.length);
 //        insertSort(nums2, nums2.length);
-        mergeSort(nums, 0, nums.length-1);
-        print(nums);
+//        mergeSort(nums, 0, nums.length-1);
+        int[] randomArray = getRandomArray(50);
+        print(randomArray);
+        quickSort(randomArray, 0, randomArray.length-1);
+        print(randomArray);
     }
 
     public static void print(int[] nums) {
         for (int i = 0; i<nums.length; i++) {
             System.out.print(nums[i] + ",");
         }
+        System.out.println();
     }
 
+
+    public static int[] getRandomArray(int number) {
+        int[] nums = new int[number];
+        for (int j = 0; j < number; j++) {
+            int tmp = (int) (Math.random()*100 + 1);
+            nums[j] = tmp;
+        }
+        return nums;
+    }
 
 }
