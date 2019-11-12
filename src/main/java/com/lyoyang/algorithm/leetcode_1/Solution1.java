@@ -1,4 +1,4 @@
-package com.lyoyang.algorithm;
+package com.lyoyang.algorithm.leetcode_1;
 
 /**
  * @author: yangbing
@@ -10,7 +10,6 @@ package com.lyoyang.algorithm;
  * 说明：你不能倾斜容器，且 n 的值至少为 2。
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/container-with-most-water
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class Solution1 {
 

@@ -9,6 +9,7 @@ import com.lyoyang.utils.DateUtil;
 import javafx.concurrent.Task;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
+import sun.misc.Unsafe;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +19,8 @@ import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestDemo {
 
@@ -109,11 +112,15 @@ public class TestDemo {
         System.out.println(i);
     }
 
+    private static final AtomicInteger atomicInteger = new AtomicInteger(1);
+
+    private ExecutorService pool = Executors.newFixedThreadPool(10);
+
     @Test
     public void CommonTest3() throws IOException, InterruptedException {
-        Map<String, Object> map = new HashMap<>();
-        map.put("123", "456");
-        System.out.println(map.size());
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("123", "456");
+//        System.out.println(map.size());
 //        System.out.println(Math.floorDiv(-9, 4));
 //        System.out.println(11 >> 2);
 //        System.out.println(Math.floorMod(7, 4));
@@ -121,6 +128,29 @@ public class TestDemo {
 //        System.out.println(Math.floorMod(7, -4));
 //        System.out.println(Math.floorMod(-7, -4));
 //        System.out.println(9 ^ -7);
-    }
 
+//        ConcurrentHashMap<String, Object> concurrentHashMap = new ConcurrentHashMap<>();
+//        concurrentHashMap.put("jim", "bob");
+//        System.out.println(DateUtil.getYearMonth());
+
+//        List<Callable<String>> callables = new ArrayList<>();
+//        for (int i = 0; i<100; i++) {
+//
+//            callables.add(new Callable<String>() {
+//                @Override
+//                public String call() throws Exception {
+//                    Thread.sleep(100);
+//                    System.out.println(Thread.currentThread() + "--->>" + atomicInteger.getAndIncrement());
+//                    return "OK";
+//                }
+//            });
+//            pool.submit(new Runnable() {
+//                @Override
+//                public void run() {
+//                    System.out.println(Thread.currentThread() + "--->>" + atomicInteger.getAndIncrement());
+//                }
+//            });
+//        }
+//        pool.invokeAll(callables);
+    }
 }
