@@ -72,7 +72,12 @@ public class Sort {
         }
     }
 
-
+    /**
+     * 快排
+     * @param nums
+     * @param low
+     * @param height
+     */
     public static void quickSort(int[] nums, int low, int height) {
         if (height <= low) return;
         int middle = getMiddle(nums, low, height);
