@@ -42,7 +42,12 @@ public class Sort {
         }
     }
 
-
+    /**
+     * 归并排序
+     * @param nums
+     * @param begin
+     * @param end
+     */
     public static void mergeSort(int[] nums, int begin, int end) {
         if (begin >= end) return;
         int mid = begin + (end - begin)/2;
@@ -67,7 +72,12 @@ public class Sort {
         }
     }
 
-
+    /**
+     * 快排
+     * @param nums
+     * @param low
+     * @param height
+     */
     public static void quickSort(int[] nums, int low, int height) {
         if (height <= low) return;
         int middle = getMiddle(nums, low, height);
