@@ -152,5 +152,7 @@ public class TestDemo {
 //            });
 //        }
 //        pool.invokeAll(callables);
+        String str = "hello";
+        System.out.println(str.hashCode());
     }
 }
