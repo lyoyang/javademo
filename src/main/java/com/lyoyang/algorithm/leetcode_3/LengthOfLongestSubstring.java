@@ -59,7 +59,7 @@ public class LengthOfLongestSubstring {
     /**
      * 滑动窗口，i,j都是窗口
      * @param s
-     * @return
+     * @return  abccdefg
      */
     public int solve2(String s) {
         int n = s.length();

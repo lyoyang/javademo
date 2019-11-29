@@ -1,11 +1,16 @@
 package com.lyoyang.suanfa;
 
+
 /**
  * 排序
  */
 public class Sort {
 
-
+    /**
+     * 冒泡排序
+     * @param nums
+     * @param n
+     */
     public static void bubbleSort(int[] nums, int n) {
         if (n == 1) return;
         for (int i = 0; i<n; i++) {
@@ -107,15 +112,15 @@ public class Sort {
 
 
     public static void main(String[] args) {
-        int[] nums = {1,34,12,4,5,5,9};
+        int[] nums = {1,4,5,3,4,3};
         int[] nums2 = {1,3,12,13,15,25,39};
 //        bubbleSort(nums2, nums2.length);
 //        insertSort(nums2, nums2.length);
-//        mergeSort(nums, 0, nums.length-1);
-        int[] randomArray = getRandomArray(50);
-        print(randomArray);
-        quickSort(randomArray, 0, randomArray.length-1);
-        print(randomArray);
+        mergeSort(nums, 0, nums.length-1);
+//        int[] randomArray = getRandomArray(50);
+//        print(randomArray);
+//        quickSort(randomArray, 0, randomArray.length-1);
+//        print(randomArray);
     }
 
     public static void print(int[] nums) {
