@@ -153,5 +153,20 @@ public class TestDemo {
 //            });
 //        }
 //        pool.invokeAll(callables);
+//        int i;
+//        for (i = 0; i < 10; i++) {
+//            System.out.println("hello-->" + i);
+//        }
+//        System.out.println(i);
+
+//        String certainDate = DateUtil.getCertainDate(-2);
+//        String settleDate = DateUtil.getCertainDate(certainDate, 1);
+//        System.out.println(certainDate + "---->" + settleDate);
+//        System.out.println(20 & 536870911);
+//        int COUNT_BITS = Integer.SIZE - 3;
+//        int CAPACITY = (1 << COUNT_BITS) - 1;
+//        System.out.println(COUNT_BITS);
+//        System.out.println(CAPACITY);
+
     }
 }
