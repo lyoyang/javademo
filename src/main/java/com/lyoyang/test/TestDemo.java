@@ -7,15 +7,20 @@ import com.google.common.collect.Sets;
 import com.google.common.io.Files;
 import com.lyoyang.entity.User;
 import com.lyoyang.utils.DateUtil;
+import com.lyoyang.utils.RsaKeyUtil;
 import javafx.concurrent.Task;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import sun.misc.Unsafe;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
+import java.security.NoSuchAlgorithmException;
+import java.security.interfaces.RSAPrivateKey;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -117,8 +122,22 @@ public class TestDemo {
 
     private ExecutorService pool = Executors.newFixedThreadPool(10);
 
+
+    public static final String PRIVATEKEYSTR = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAIacOnzq4HcJcSVkIQqMVTTkS3MK\n" +
+            "mpwVgk5VUWYCIQ3+ZPutDlo5TRDl07fy3vUC6tKfPI4jCECDH0fnHcbGRxvL2Q5rw0UPknUTVZgF\n" +
+            "d+5s5lwJaNsm8jDZK0y4wLbp6E9afegihlqrlVOUG0DoHS/BKAvP+Mr+UlH7qR2N3HMXAgMBAAEC\n" +
+            "gYEAg6iifDOuwD73775zosGHRWhVc3vXpPpUrRE9wCws8Gb1lkO5Wf3ZpsFjxvNBpxrnWoJs1Ajn\n" +
+            "tVGKcuVWdmjQeq9q/djiG5BSvu2vtNDtGNRtSiOtTAwIM+Av7AKkP3XUqdzoebPOKkDXXhwIcKUf\n" +
+            "VDt5UvQ4LLTD3ZgcnMPb5kECQQDHJZre35RgjdpeXRe0CJ6f1XqQwP+LrPtfMMJga1RbppF8M1+k\n" +
+            "yYlymT75YKgqSsm4WitvDWS55CDtaZrACjy5AkEArQoMCFg+BWbaksohth4q4GtSOCJ/0xoj+3UJ\n" +
+            "RcDnklBgQ6jOs0lTU8jJ8IEyFGQFiLGz6fT2/1YLPioVvZJmTwJBAKKTgpE8OSdx5rluijFBcC3P\n" +
+            "25Vc2cIvX69gYO7R8DY6Dz8zuXsPxJO3o392dxK/p1pG0nqAlqBjKrZmphzsvpECQGmxP1RBgfCO\n" +
+            "uGb8q8aveoUFSH0dJXJt/xhyji1a/Jc0HPh2vXppCUqd1Crg3xPxXCf4UupORCgGCGv6DLl0GKUC\n" +
+            "QEMXQ/o9/s4KEzy+8zswuwozwEBY/bDJiLSeJ5i6qAfn7KduWVNJ6j7FRP1ZXEw33I28SfBk1a9d\n" +
+            "/C+n41crQ80=";
+
     @Test
-    public void CommonTest3() throws IOException, InterruptedException {
+    public void CommonTest3() throws Exception {
 //        Map<String, Object> map = new HashMap<>();
 //        map.put("123", "456");
 //        System.out.println(map.size());
@@ -167,6 +186,63 @@ public class TestDemo {
 //        int CAPACITY = (1 << COUNT_BITS) - 1;
 //        System.out.println(COUNT_BITS);
 //        System.out.println(CAPACITY);
-
+        RSAPrivateKey privateKey = RsaKeyUtil.string2privateKey(PRIVATEKEYSTR);
     }
+
+
+    public static String byteToHexString(byte[] bytes) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < bytes.length; i++) {
+            String strHex=Integer.toHexString(bytes[i]);
+            if(strHex.length() > 3) {
+                sb.append(strHex.substring(6));
+            } else {
+                if(strHex.length() < 2) {
+                    sb.append("0" + strHex);
+                } else {
+                    sb.append(strHex);
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+
+    public static String getAESKey()
+    {
+        KeyGenerator kg = null;
+        try
+        {
+            kg = KeyGenerator.getInstance("AES");
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        kg.init(128);// 要生成多少位，只需要修改这里即可128, 192或256
+        SecretKey sk = kg.generateKey();
+        byte[] b = sk.getEncoded();
+        String hexKey = parseByte2HexStr(b);
+        return hexKey;
+    }
+
+    public static String parseByte2HexStr(byte[] buf)
+    {
+        if (null == buf)
+        {
+            return null;
+        }
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < buf.length; i++)
+        {
+            String hex = Integer.toHexString(buf[i] & 0xFF);
+            if (hex.length() == 1)
+            {
+                hex = '0' + hex;
+            }
+            sb.append(hex.toUpperCase(Locale.US));
+        }
+        return sb.toString();
+    }
+
 }
