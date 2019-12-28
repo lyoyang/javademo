@@ -168,5 +168,10 @@ public class TestDemo {
 //        System.out.println(COUNT_BITS);
 //        System.out.println(CAPACITY);
 
+        System.out.println(ThreadLocalRandom.current().nextInt(10));
+        System.out.println(ThreadLocalRandom.current().nextInt(10));
+        System.out.println(ThreadLocalRandom.current().nextInt(10));
+        System.out.println(ThreadLocalRandom.current().nextInt(10));
+
     }
 }
