@@ -1,6 +1,6 @@
 package com.lyoyang.guava.cache;
 
-public class LinkedListLruCacheExample {
+public class LinkedListLRUCacheExample {
 
 
     public static void main(String[] args) {
