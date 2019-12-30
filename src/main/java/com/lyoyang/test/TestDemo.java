@@ -6,8 +6,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.io.Files;
 import com.lyoyang.entity.User;
+import com.lyoyang.utils.AESUtil;
 import com.lyoyang.utils.DateUtil;
 import com.lyoyang.utils.RsaKeyUtil;
+import com.sun.xml.internal.ws.util.StreamUtils;
 import javafx.concurrent.Task;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
@@ -15,8 +17,7 @@ import sun.misc.Unsafe;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
@@ -186,63 +187,36 @@ public class TestDemo {
 //        int CAPACITY = (1 << COUNT_BITS) - 1;
 //        System.out.println(COUNT_BITS);
 //        System.out.println(CAPACITY);
-        RSAPrivateKey privateKey = RsaKeyUtil.string2privateKey(PRIVATEKEYSTR);
+
+//        System.out.println(new Integer(10).toString());
+
+//        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append("您好：<br><br>");
+//        stringBuilder.append(DateUtil.getStringFromDate(new Date(), DateUtil.FORMAT_DATETIME));
+//        stringBuilder.append("-");
+//        stringBuilder.append(DateUtil.getStringFromDate(new Date(), DateUtil.FORMAT_DATETIME));
+//        stringBuilder.append("时间段内存在未清算交易，麻烦进行处理");
+//        System.out.println(stringBuilder.toString());
+//        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("a".getBytes());
+//        int read = byteArrayInputStream.read();
+//        System.out.println(read);
+//        System.out.println(new Random().nextInt(9999));
+
+        String descrypt = AESUtil.decrypt("kx9eiReI4fCPTrBK", "hU4I2aZgPxWukVXdzepj+JGXRkTS/Vgyh5iH1LcE6/yRTnpZbcFWDwD9bT5RsEnaZ10XzQpr5ZGkiqFiDnfvMBX3vrYuJcF6P65EkQXmIGskZGjHm+rVgvZTlaimdTF6");
+        System.out.println(descrypt);
+
     }
 
 
-    public static String byteToHexString(byte[] bytes) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < bytes.length; i++) {
-            String strHex=Integer.toHexString(bytes[i]);
-            if(strHex.length() > 3) {
-                sb.append(strHex.substring(6));
-            } else {
-                if(strHex.length() < 2) {
-                    sb.append("0" + strHex);
-                } else {
-                    sb.append(strHex);
-                }
-            }
-        }
-        return sb.toString();
-    }
 
-
-    public static String getAESKey()
-    {
-        KeyGenerator kg = null;
-        try
-        {
-            kg = KeyGenerator.getInstance("AES");
+    public int getRes() {
+        int a = 5;
+        try {
+            a = 10;
+            return a;
+        } finally {
+            a = 20;
         }
-        catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
-        }
-        kg.init(128);// 要生成多少位，只需要修改这里即可128, 192或256
-        SecretKey sk = kg.generateKey();
-        byte[] b = sk.getEncoded();
-        String hexKey = parseByte2HexStr(b);
-        return hexKey;
-    }
-
-    public static String parseByte2HexStr(byte[] buf)
-    {
-        if (null == buf)
-        {
-            return null;
-        }
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < buf.length; i++)
-        {
-            String hex = Integer.toHexString(buf[i] & 0xFF);
-            if (hex.length() == 1)
-            {
-                hex = '0' + hex;
-            }
-            sb.append(hex.toUpperCase(Locale.US));
-        }
-        return sb.toString();
     }
 
 }
