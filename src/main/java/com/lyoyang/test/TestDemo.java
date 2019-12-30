@@ -204,6 +204,7 @@ public class TestDemo {
 
         String descrypt = AESUtil.decrypt("kx9eiReI4fCPTrBK", "hU4I2aZgPxWukVXdzepj+JGXRkTS/Vgyh5iH1LcE6/yRTnpZbcFWDwD9bT5RsEnaZ10XzQpr5ZGkiqFiDnfvMBX3vrYuJcF6P65EkQXmIGskZGjHm+rVgvZTlaimdTF6");
         System.out.println(descrypt);
+        System.out.println(ThreadLocalRandom.current().nextInt(10));
 
     }
 
