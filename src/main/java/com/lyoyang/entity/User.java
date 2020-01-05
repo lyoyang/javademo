@@ -5,6 +5,7 @@ import com.lyoyang.annotationdemo.InitValue;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Data
 @AllArgsConstructor
@@ -20,6 +21,8 @@ public class User {
     private String city;
 
     private BigDecimal work;
+
+    private Optional<Student> student;
 
 
 
