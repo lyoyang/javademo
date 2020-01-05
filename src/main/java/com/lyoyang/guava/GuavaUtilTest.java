@@ -1,6 +1,7 @@
 package com.lyoyang.guava;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableBiMap;
 import org.junit.Test;
@@ -89,9 +90,18 @@ public class GuavaUtilTest {
 
     @Test
     public void testSplitForMap() {
-        Map<String, String> split = Splitter.on("&").trimResults().omitEmptyStrings()
-                .withKeyValueSeparator("=").split("name=jim&phone=1223343");
+        Map<String, String> split = Splitter.on(",").trimResults().omitEmptyStrings()
+                .withKeyValueSeparator(":").split("{\"name\":\"jim\",\"age\":\"12\"}");
         System.out.println(split);
+        System.out.println(split.get("name"));
+    }
+
+    @Test
+    public void testOptionalTest() {
+        Optional<Integer> of = Optional.of(5);
+        System.out.println(of.get());
+        Optional<Object> absent = Optional.absent();
+        System.out.println(absent.isPresent());
     }
 
 
