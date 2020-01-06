@@ -1,14 +1,22 @@
 package com.lyoyang.java8;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class CollectorDemo {
 
-    public static void main(String[] args) {
+    private static final List<Apple> apples = Arrays.asList(new Apple("red", 10L),
+            new Apple("greeen", 20L),
+            new Apple("blue", 30L),
+            new Apple("red", 13L),
+            new Apple("green", 17L));
 
+    public static void main(String[] args) {
+        testGroupByFunctionAndCollector();
+        testCollectAndThen();
     }
+
+
 
 
     private static Map<String, List<Apple>> groupByColor(List<Apple> apples){
@@ -42,6 +50,21 @@ public class CollectorDemo {
     private static Map<String, List<Apple>> groupByCollector(List<Apple> apples){
         return apples.stream().collect(Collectors.groupingBy(Apple::getColor));
     }
+
+
+    private static void testGroupByFunctionAndCollector() {
+        System.out.println("testGroupByFunctionAndCollector");
+        Optional.ofNullable(apples.stream().collect(Collectors.groupingBy(Apple::getColor, Collectors.averagingDouble(Apple::getWeight))))
+                .ifPresent(System.out::println);
+    }
+
+
+
+    private static void testCollectAndThen() {
+        Optional.of(apples.stream().collect(Collectors.collectingAndThen(Collectors.averagingDouble(Apple::getWeight), a-> "The average is :" + a)))
+                .ifPresent(System.out::println);
+    }
+
 
 
 
