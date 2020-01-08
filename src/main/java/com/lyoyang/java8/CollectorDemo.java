@@ -1,10 +1,18 @@
 package com.lyoyang.java8;
 
+import org.junit.Test;
+
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
+
 public class CollectorDemo {
+
+    private static final List<Apple> appList = Arrays.asList(new Apple("Red", 12L),
+            new Apple("Blue", 13L),
+            new Apple("Green", 20L),
+            new Apple("Yellow", 15L));
 
     public static void main(String[] args) {
 
@@ -43,6 +51,17 @@ public class CollectorDemo {
         return apples.stream().collect(Collectors.groupingBy(Apple::getColor));
     }
 
+
+    @Test
+    public void testCollect() {
+        Optional.of(appList.stream().collect(Collectors.counting())).ifPresent(System.out::println);
+        Optional.of(appList.stream().count()).ifPresent(System.out::println);
+        appList.stream().collect(maxBy(Comparator.comparing(Apple::getWeight))).ifPresent(System.out::println);
+        Optional.of(appList.stream().collect(summarizingLong(Apple::getWeight))).ifPresent( s ->
+                System.out.println("count=" + s.getCount() + ",sum=" + s.getSum() + ",average=" + s.getAverage()));
+        Optional.of(appList.stream().collect(averagingLong(Apple::getWeight))).ifPresent(System.out::println);
+        Optional.of(appList.stream().map(Apple::getColor).collect(joining())).ifPresent(System.out::println);
+    }
 
 
 

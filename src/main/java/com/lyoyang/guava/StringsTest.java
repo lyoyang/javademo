@@ -45,6 +45,8 @@ public class StringsTest {
         assertThat(CharMatcher.breakingWhitespace().collapseFrom("  a good man ", '*'), equalTo("*a*good*man*"));
         assertThat(CharMatcher.javaDigit().or(CharMatcher.whitespace()).removeFrom("hello 123 world"), equalTo("helloworld"));
         assertThat(CharMatcher.javaDigit().or(CharMatcher.whitespace()).retainFrom("hello 123 world"), equalTo(" 123 "));
+        System.out.println(Strings.nullToEmpty(null));
+
     }
 
 
