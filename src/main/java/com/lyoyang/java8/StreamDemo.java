@@ -5,42 +5,41 @@ import com.lyoyang.entity.Student;
 import com.lyoyang.entity.User;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class StreamDemo {
     public static void main(String[] args) {
         ArrayList<String> strs = Lists.newArrayList("jim","tom","green","","alice","tom","green");
         System.out.println(strs);
       //筛选
-        List<String> col1 = strs.stream().filter(str -> !str.isEmpty()).collect(Collectors.toList());
+        List<String> col1 = strs.stream().filter(str -> !str.isEmpty()).collect(toList());
         System.out.println("筛选1--》" + col1);
         ArrayList<Integer> ints = Lists.newArrayList(1,2,13,5,6,9,34,44,23);
-        List<Integer> col2 = ints.stream().filter(no -> no % 2 == 0).collect(Collectors.toList());
+        List<Integer> col2 = ints.stream().filter(no -> no % 2 == 0).collect(toList());
         System.out.println("筛选2--》" + col2);
 
         //去重
-        List<String> col3 = strs.stream().filter(str -> !str.isEmpty()).distinct().collect(Collectors.toList());
+        List<String> col3 = strs.stream().filter(str -> !str.isEmpty()).distinct().collect(toList());
         System.out.println("去重--》" + col3);
         //截取
-        List<Integer> col4 = ints.stream().limit(3).collect(Collectors.toList());
+        List<Integer> col4 = ints.stream().limit(3).collect(toList());
         System.out.println("截取--》" + col4);
         //跳过 跳过流的前2个元素
-        System.out.println(ints.stream().filter(no -> no % 2 != 0).collect(Collectors.toList()));
-        List<Integer> col5 = ints.stream().filter(no -> no % 2 != 0).skip(2).collect(Collectors.toList());
+        System.out.println(ints.stream().filter(no -> no % 2 != 0).collect(toList()));
+        List<Integer> col5 = ints.stream().filter(no -> no % 2 != 0).skip(2).collect(toList());
         System.out.println("跳过--》" + col5);
         //映射  是指对流中的每个数据进行操作
-        List<Integer> col6 = ints.stream().map(no -> no * 2).collect(Collectors.toList());
+        List<Integer> col6 = ints.stream().map(no -> no * 2).collect(toList());
         System.out.println("映射--》" + col6);
         ArrayList<String> list = Lists.newArrayList();
         list.add("I am a boy");
         list.add("I love the girl");
         list.add("But the girl loves another girl");
         //将小流合并成大流
-        List<String> col7 = list.stream().map(line -> line.split(" ")).flatMap(Arrays::stream).collect(Collectors.toList());
+        List<String> col7 = list.stream().map(line -> line.split(" ")).flatMap(Arrays::stream).collect(toList());
         System.out.println("小流合大流--》" + col7);
         //匹配任意元素
         boolean res1 = ints.stream().anyMatch(no -> no % 2 == 0);
@@ -113,7 +112,7 @@ public class StreamDemo {
         ArrayList<Student> list = new ArrayList<>();
         list.add(s1);
         list.add(s2);
-        List<Student> collect = list.stream().filter(s -> s.getId() % 2 == 0).collect(Collectors.toList());
+        List<Student> collect = list.stream().filter(s -> s.getId() % 2 == 0).collect(toList());
         System.out.println(list.stream().filter(s -> s.getId()%9 == 0).mapToInt(s -> s.getId()).summaryStatistics().getSum());
     }
 
