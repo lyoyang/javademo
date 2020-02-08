@@ -10,7 +10,6 @@ import com.lyoyang.entity.User;
 import com.lyoyang.utils.AESUtil;
 import com.lyoyang.utils.DateUtil;
 import com.lyoyang.utils.RsaKeyUtil;
-import com.sun.xml.internal.ws.util.StreamUtils;
 import javafx.concurrent.Task;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
@@ -30,6 +29,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class TestDemo {
 
@@ -211,8 +211,124 @@ public class TestDemo {
 //        String s = Strings.commonPrefix(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")), "retg");
 //        System.out.println(s);
 
-        BigDecimal bigDecimal = new BigDecimal("12.34").divide(new BigDecimal(100)).setScale(3);
-        System.out.println(bigDecimal.toPlainString());
+//        BigDecimal bigDecimal = new BigDecimal("12.34").divide(new BigDecimal(100)).setScale(3);
+//        System.out.println(bigDecimal.toPlainString());
+        System.out.println(Math.pow(2,3));
+
+
+        List<String> strings = Arrays.asList("1495577562",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "310000015001041487",
+                "310000015001041458",
+                "1495577562",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "1495577562",
+                "310000015001041487",
+                "310000015001041487",
+                "310000015001041458",
+                "1495577562",
+                "2016090701862812",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "10026941734",
+                "1495577562",
+                "1495577562",
+                "310000015001041487",
+                "10026941734",
+                "310000015001041458",
+                "310000015001041458",
+                "310000015001041487",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "10026941734",
+                "10026941734",
+                "10026941734",
+                "10026941734",
+                "310000015001041487",
+                "310000015001041487",
+                "310000015001041458",
+                "310000015001041458",
+                "1495577562",
+                "10026941734",
+                "10026941734",
+                "10026941734",
+                "10026941734",
+                "1495577562",
+                "310000015001041458",
+                "310000015001041458",
+                "310000015001041458",
+                "310000015001041487",
+                "310000015001041487",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "10026941734",
+                "310000015001041458",
+                "310000015001041487",
+                "1495577562",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "1495577562",
+                "2016090701862812",
+                "1495577562",
+                "1495577562",
+                "2016090701862812",
+                "1495577562",
+                "2016090701862812",
+                "310000015001041487",
+                "310000015001041458",
+                "1495577562",
+                "2016090701862812",
+                "1495577562",
+                "1495577562",
+                "2016090701862812",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "2016090701862812",
+                "1495577562",
+                "2016090701862812",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "SUNINGPAY",
+                "310000015001041487",
+                "310000015001041458",
+                "1495577562",
+                "1495577562",
+                "310000015001041487",
+                "310000015001041458",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "310000015001041458",
+                "1495577562",
+                "1495577562",
+                "1495577562",
+                "8a81c1bf6cd9afd5016cdc8e81820007",
+                "1495577562",
+                "1495577562",
+                "2016090701862812",
+                "10026941734",
+                "310000015001041487",
+                "1495577562",
+                "1495577562",
+                "0277",
+                "0277",
+                "0277"
+        );
+        List<String> collect = strings.stream().distinct().collect(Collectors.toList());
+        System.out.println(collect.toString());
+
 
     }
 
