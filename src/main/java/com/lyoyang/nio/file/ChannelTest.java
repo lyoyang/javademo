@@ -86,9 +86,7 @@ public class ChannelTest {
         FileChannel outChannel = FileChannel.open(Paths.get("/tmp/2.box"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
         inChannel.transferTo(0, inChannel.size(), outChannel);
 //        outChannel.transferFrom(inChannel, 0, inChannel.size());
-
         System.out.println("消耗时间：" + (System.currentTimeMillis() - beginTime));
     }
-
-
 }
+

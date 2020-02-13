@@ -113,7 +113,4 @@ public class GuavaUtilTest {
         });
         System.out.println("--- The end ---");
     }
-
-
-
 }

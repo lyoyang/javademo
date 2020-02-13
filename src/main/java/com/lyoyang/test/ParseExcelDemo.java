@@ -164,8 +164,4 @@ public class ParseExcelDemo {
         fileOutputStream.write(builder.toString().getBytes("GBK"));
         fileOutputStream.flush();
     }
-
-
-
-
 }

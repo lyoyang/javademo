@@ -50,8 +50,4 @@ public class NioForFileDemo {
 //        String[] split = tmpStr.split(",");
         System.out.println(Math.abs(-0.234D));
     }
-
-
-
-
 }
