@@ -21,6 +21,7 @@ import javax.crypto.SecretKey;
 import java.io.*;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
 import java.text.MessageFormat;
@@ -211,9 +212,10 @@ public class TestDemo {
 //        String s = Strings.commonPrefix(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")), "retg");
 //        System.out.println(s);
 
-        BigDecimal bigDecimal = new BigDecimal("12.34").divide(new BigDecimal(100)).setScale(3);
-        System.out.println(bigDecimal.toPlainString());
 
+//        System.out.println(Thread.currentThread().getContextClassLoader().getResource("a.txt").getPath());
+//        System.out.println(TestDemo.class.getClassLoader().getResource("1.jpg").getPath());
+        System.out.println(System.getProperty("user.dir"));
     }
 
 

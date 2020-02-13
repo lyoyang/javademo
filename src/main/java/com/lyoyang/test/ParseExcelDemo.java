@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -117,21 +118,51 @@ public class ParseExcelDemo {
 
     @Test
     public void testParseExcelConfig() throws IOException {
-            File file = new File("E://测试文档/应用中心数据.xlsx");
+        Map<String, String> map = new HashMap<>();
+        map.put("H5", "02");
+        map.put("APP小程序", "11");
+        map.put("原生APP", "03");
+        map.put("小程序", "01");
+        File file = new File("C:\\Users\\ipaynow0829\\Desktop\\商户子场景\\子场景反馈及费率确认.xls");
             Workbook workbook = ReadExcelUtil.getWorkbook(file);
             Sheet sheetAt1 = workbook.getSheetAt(0);
             Map<Integer, Map<Integer, Object>> integerMapMap = ReadExcelUtil.readExcelConetentBySheet(sheetAt1);
             Set<Map.Entry<Integer, Map<Integer, Object>>> entries = integerMapMap.entrySet();
             List<FeeConfig> feeConfigs = new ArrayList<>();
-            for (Map.Entry<Integer, Map<Integer, Object>> entry : entries) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("INSERT INTO fee_config (CHANNEL_ID, DEVICE_ID, MCH_ID, TRANS_TYPE, FEE_MODE, RATIO_VALUE, RATE_MAX_VALUE, MER_REFUND_FEE, MONTH_TYPE, IS_DAFAULT, BEGIN_DATE, remark, SUB_DEVICE_ID) VALUES");
+        for (Map.Entry<Integer, Map<Integer, Object>> entry : entries) {
                 Map<Integer, Object> value = entry.getValue();
-                FeeConfig feeConfig = new FeeConfig();
-                feeConfig.setMchId(value.get(0).toString());
-                feeConfig.setDeviceId(value.get(2).toString());
-                feeConfig.setChannelId(value.get(3).toString());
-                feeConfigs.add(feeConfig);
+                String mchId = value.get(0).toString();
+                String channelId = "13";
+                String deviceId = "01";
+                String transType = "05";
+                String feeMode = "1";
+                BigDecimal rateMaxValue = new BigDecimal("1000000");
+                String merRefundFee = "0";
+                String monthType = "0";
+                String isDefault = "0";
+                String beginDate = "2020-01-10 00:00:00";
+                String remark = "sys-subDeviceId";
+                BigDecimal ratioValue = new BigDecimal(value.get(7).toString());
+                String subDeviceIds = value.get(6).toString();
+                if (mchId.equals("000000001572389")) {
+                    rateMaxValue = new BigDecimal("5000000");
+                }
+                List<String> subDeviceIdList = Arrays.asList(subDeviceIds.trim().split("、"));
+                for (String subDeviceId : subDeviceIdList) {
+                    String specialMchId = map.get(subDeviceId);
+                    builder.append("(").append("'").append(channelId).append("'").append(",").append("'").append(deviceId).append("'").append(",")
+                            .append("'").append(mchId).append("'").append(",").append("'").append(transType).append("'").append(",").append("'").append(feeMode).append("'").append(",")
+                            .append(ratioValue).append(",").append(rateMaxValue).append(",").append("'").append(merRefundFee).append("'").append(",")
+                            .append("'").append(monthType).append("'").append(",").append("'").append(isDefault).append("'").append(",").append("'").append(beginDate).append("'").append(",")
+                            .append("'").append(remark).append("'").append(",").append("'").append(specialMchId).append("'").append("),").append("\n");
+                }
             }
-        System.out.println(feeConfigs.toString());
+        File file1 = new File("E://opt/feeConfigSub.sql");
+        FileOutputStream fileOutputStream = new FileOutputStream(file1);
+        fileOutputStream.write(builder.toString().getBytes("GBK"));
+        fileOutputStream.flush();
     }
 
 
