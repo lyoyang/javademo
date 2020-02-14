@@ -10,7 +10,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.Iterator;
 
-public class NioNoBlockingDemo2 {
+public class UDPTestDemo {
 
     @Test
     public void client() throws IOException {

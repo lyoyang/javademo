@@ -12,7 +12,7 @@ import java.nio.channels.SocketChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class NioBlockDemo2 {
+public class BlockDemo {
 
 
     @Test
@@ -26,7 +26,7 @@ public class NioBlockDemo2 {
             buffer.clear();
         }
         socketChannel.shutdownOutput();
-        int len = 0;
+        int len;
         while ((len = socketChannel.read(buffer)) != -1) {
             buffer.flip();
             System.out.println(new String(buffer.array(), 0, len));

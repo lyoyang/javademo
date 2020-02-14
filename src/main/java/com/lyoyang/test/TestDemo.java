@@ -213,9 +213,15 @@ public class TestDemo {
 //        System.out.println(s);
 
 
-//        System.out.println(Thread.currentThread().getContextClassLoader().getResource("a.txt").getPath());
-//        System.out.println(TestDemo.class.getClassLoader().getResource("1.jpg").getPath());
-        System.out.println(System.getProperty("user.dir"));
+        try {
+            while (true) {
+                int a = 1/0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
