@@ -13,8 +13,8 @@ public class CollectorDemo {
     private static final List<Apple> apples = Arrays.asList(new Apple("red", 10L),
             new Apple("greeen", 20L),
             new Apple("blue", 30L),
-            new Apple("red", 13L),
-            new Apple("green", 17L));
+            new Apple("yellow", 13L),
+            new Apple("black", 17L));
     private static final List<Apple> appList = Arrays.asList(new Apple("Red", 12L),
             new Apple("Blue", 13L),
             new Apple("Green", 20L),
@@ -131,6 +131,18 @@ public class CollectorDemo {
         Optional.of(apples.stream().collect(reducing(0, Apple::getWeight, (d1, d2)-> d1.longValue() + d2.longValue()))).ifPresent(System.out::println);
     }
 
+
+    @Test
+    public void testToCurrentMap() {
+        Optional.of(apples.stream().collect(Collectors.toConcurrentMap(Apple::getColor, Apple::getWeight)))
+                .ifPresent(System.out::println);
+    }
+
+    @Test
+    public void testToMap() {
+        Optional.of(apples.stream().collect(Collectors.toMap(Apple::getColor, Apple::getWeight)))
+                .ifPresent(System.out::println);
+    }
 
 
 
