@@ -4,11 +4,12 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.lyoyang.guava.cache.Student;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
@@ -98,12 +99,18 @@ public class GuavaUtilTest {
 
     @Test
     public void testOptionalTest() {
-        Optional<Integer> of = Optional.of(5);
-        System.out.println(of.get());
-        Optional<Object> absent = Optional.absent();
-        System.out.println(absent.isPresent());
+//        Optional<Integer> of = Optional.of(5);
+//        System.out.println(of.get());
+//        Optional<Object> absent = Optional.absent();
+//        System.out.println(absent.isPresent());
+//        List<Student> students = Arrays.asList(new Student(), new Student(), new Student());
+//        Lists.partition(students, 2);
+
+        List<Integer> numbers = Lists.newArrayList(1,2,3,4,5,6,7,8,9,10);
+        Iterables.partition(numbers,5).forEach(i -> {
+            System.out.println("--- seperator ---");
+            i.forEach(System.out::println);
+        });
+        System.out.println("--- The end ---");
     }
-
-
-
 }

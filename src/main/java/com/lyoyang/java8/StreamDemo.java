@@ -117,21 +117,5 @@ public class StreamDemo {
         List<Student> collect = list.stream().filter(s -> s.getId() % 2 == 0).collect(toList());
         System.out.println(list.stream().filter(s -> s.getId()%9 == 0).mapToInt(s -> s.getId()).summaryStatistics().getSum());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+

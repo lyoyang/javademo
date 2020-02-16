@@ -143,15 +143,4 @@ public class CollectorDemo {
         Optional.of(apples.stream().collect(Collectors.toMap(Apple::getColor, Apple::getWeight)))
                 .ifPresent(System.out::println);
     }
-
-
-
-
-
-
-
-
-
-
-
 }
