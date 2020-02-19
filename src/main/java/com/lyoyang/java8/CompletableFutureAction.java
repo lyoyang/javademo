@@ -19,9 +19,9 @@ public class CompletableFutureAction {
 
     public static void main(String[] args) {
 //       test1();
-//        test2();
+        test2();
 //        test3();
-        test4();
+//        test4();
     }
 
 
@@ -44,12 +44,13 @@ public class CompletableFutureAction {
     }
 
 
-
-
+    /**
+     * 线程池创建的线程默认为非守护线程
+     */
     public static void test2() {
         ExecutorService executorService = Executors.newFixedThreadPool(2, r-> {
             Thread thread = new Thread(r);
-//            thread.setDaemon(false);
+//            thread.setDaemon(true);
             return thread;
         });
 
