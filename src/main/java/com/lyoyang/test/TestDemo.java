@@ -114,4 +114,22 @@ public class TestDemo {
     }
 
 
+
+    @Test
+    public void testWait() {
+        Object o = new Object();
+        synchronized (o) {
+            try {
+                o.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("success");
+            o.notify();
+        }
+    }
+
+
+
+
 }
