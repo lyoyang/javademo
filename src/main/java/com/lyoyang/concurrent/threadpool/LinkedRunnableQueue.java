@@ -24,7 +24,7 @@ public class LinkedRunnableQueue implements RunnableQueue {
             if (runnables.size() >= limit ) {
                 denyPolicy.rejeict(runnable, threadPool);
             } else {
-                runnables.add(runnable);
+                runnables.addLast(runnable);
                 runnables.notifyAll();
             }
         }
