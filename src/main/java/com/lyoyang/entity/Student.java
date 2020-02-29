@@ -3,9 +3,11 @@ package com.lyoyang.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.msgpack.annotation.Message;
 
 import java.math.BigDecimal;
 
+@Message
 public class Student {
 
     @NotBlank(message = "id不能为空")
