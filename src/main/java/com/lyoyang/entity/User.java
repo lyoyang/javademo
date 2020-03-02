@@ -3,7 +3,9 @@ package com.lyoyang.entity;
 
 import com.lyoyang.annotationdemo.InitValue;
 import lombok.*;
+import org.msgpack.annotation.Message;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Optional;
 

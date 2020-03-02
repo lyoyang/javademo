@@ -131,6 +131,12 @@ public class TestDemo {
     }
 
 
+    @Test
+    public void getProperty() {
+        System.out.println(System.getProperty("line.separator"));
+    }
+
+
 
 
 

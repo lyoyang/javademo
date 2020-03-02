@@ -1,9 +1,11 @@
-package com.lyoyang.nio.socket;
+package com.lyoyang.netty;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -136,8 +138,8 @@ public class NioClient implements Runnable {
     }
 
 
-    public static void main(String[] args) {
-        NioClient nioClient = new NioClient("127.0.0.1", 8088);
+    public static void main(String[] args) throws UnknownHostException {
+        NioClient nioClient = new NioClient(InetAddress.getLocalHost().getHostName(), 8088);
         new Thread(nioClient).start();
     }
 
