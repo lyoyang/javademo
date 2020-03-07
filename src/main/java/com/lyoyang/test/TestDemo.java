@@ -1,5 +1,6 @@
 package com.lyoyang.test;
 
+import com.google.common.base.Stopwatch;
 import com.google.common.base.Strings;
 import com.lyoyang.utils.AESUtil;
 import com.lyoyang.utils.DateUtil;
@@ -132,8 +133,47 @@ public class TestDemo {
 
     @Test
     public void getProperty() {
-        System.out.println(System.getProperty("line.separator"));
+
+        Stopwatch started = Stopwatch.createStarted();
+        int times = 10000*10000;
+        int a = 0;
+        for (long i = 0; i < times; i++) {
+            a = 9999%1024;
+        }
+        System.out.println("cost time:" + started.stop());
+        int b = 0;
+        Stopwatch started1 = Stopwatch.createStarted();
+        for (long i = 0; i < times; i++) {
+            b = 9999&(1024-1);
+        }
+        System.out.println("cost time:" + started1.stop());
+        System.out.println(a + "," + b);
     }
+
+    @Test
+    public void haha() {
+        List<String> list = Arrays.asList("java", "php", "scala", "go", "python");
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add("java");
+//        list.add("php");
+//        list.add("scala");
+//        list.add("go");
+//        list.add("python");
+//        for (int i = 0; i < list.size(); i++) {
+//            if (list.get(i).equals("go")) {
+//                list.remove(list.get(i));
+//            }
+//        }
+
+        Persion p = new Kids();
+        p.play();
+
+        Animal animal = new Sparrow();
+        animal.run();
+
+
+    }
+
 
 
 
