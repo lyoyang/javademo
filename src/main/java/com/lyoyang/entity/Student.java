@@ -8,7 +8,7 @@ import org.msgpack.annotation.Message;
 import java.math.BigDecimal;
 
 @Message
-public class Student {
+public class Student implements Cloneable{
 
     @NotBlank(message = "id不能为空")
     @Range(min = 6, max = 10, message = "id范围6-10")
@@ -41,4 +41,20 @@ public class Student {
                 ", username='" + username + '\'' +
                 '}';
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Student student = new Student();
+        String userName = "jim";
+        student.setUsername(userName);
+        Student clone = (Student) student.clone();
+        System.out.println(clone.equals(student));
+        System.out.println(clone.getUsername());
+        System.out.println(student.getUsername() == clone.getUsername());
+    }
+
 }
