@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -28,6 +29,14 @@ public class ListTest {
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
+    }
+
+
+    @Test
+    public void testLinkedList() {
+        LinkedList<Integer> link = new LinkedList<>();
+        link.pop();
+        link.removeLast();
     }
 
 

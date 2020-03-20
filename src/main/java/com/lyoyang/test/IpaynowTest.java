@@ -1,5 +1,8 @@
 package com.lyoyang.test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.lyoyang.guava.cache.Student;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -61,6 +64,17 @@ public class IpaynowTest {
         return totalIncome;
     }
 
+
+    @Test
+    public void testParse() {
+        Student student = new Student();
+        student.setClassNo("12");
+        student.setName("jim");
+        student.setId("1");
+        String json = JSONObject.toJSONString(student);
+        Student newStudent = JSON.parseObject(json, Student.class);
+        System.out.println("hello");
+    }
 
 
 
