@@ -12,12 +12,32 @@ import java.util.stream.IntStream;
 public class ThreadTest {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        IntStream.range(0,2).mapToObj(ThreadTest::create).forEach(Thread::start);
         ThreadTest threadTest = new ThreadTest();
-        for (int i = 0; i < 5; i++) {
-            new Thread(threadTest::synchronizedTest).start();
-        }
+//        for (int i = 0; i < 5; i++) {
+//            new Thread(threadTest::synchronizedTest).start();
+//        }
+
+
+        Thread thread = new Thread(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("hello");
+        });
+        thread.setDaemon(true);
+
+        thread.start();
+
+        TimeUnit.SECONDS.sleep(2000);
+//        System.out.println(thread.isDaemon());
+        System.out.println("this is main");
+
+
+
     }
 
 

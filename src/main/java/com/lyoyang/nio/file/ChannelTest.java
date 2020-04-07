@@ -88,5 +88,22 @@ public class ChannelTest {
 //        outChannel.transferFrom(inChannel, 0, inChannel.size());
         System.out.println("消耗时间：" + (System.currentTimeMillis() - beginTime));
     }
+
+
+    @Test
+    public void writeData() throws IOException {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("data").append("hello").append("你好");
+        FileChannel outChannel = FileChannel.open(Paths.get("E://hello.txt"), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+//        MappedByteBuffer outMappedBuffer = outChannel.map(FileChannel.MapMode.READ_WRITE, 0, buffer.toString().getBytes().length);
+//        outMappedBuffer.put(buffer.toString().getBytes());
+        ByteBuffer wrap = ByteBuffer.wrap(buffer.toString().getBytes());
+        wrap.put(buffer.toString().getBytes());
+        wrap.flip();
+        outChannel.write(wrap);
+
+        outChannel.close();
+    }
+
 }
 

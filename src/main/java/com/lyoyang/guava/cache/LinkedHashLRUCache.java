@@ -5,6 +5,11 @@ import com.google.common.base.Preconditions;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 使用LinkedHashMap实现LRU算法
+ * @param <K>
+ * @param <V>
+ */
 public class LinkedHashLRUCache<K,V> implements LRUCache<K,V> {
 
     private static class InternalLRUCache<K,V> extends LinkedHashMap<K,V> {

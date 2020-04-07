@@ -39,11 +39,8 @@ public class ThreadPoolDemo {
     private static final AtomicInteger atomicInteger = new AtomicInteger(0);
 
 
-    public static void main(String[] args) throws InterruptedException {
-//        fixedThreadPool.execute(() -> {
-//            System.out.println("123");
-//        });
-        TimeUnit.MINUTES.sleep(6);
+    public static void main(String[] args) {
+        testThreadPool();
     }
 
 
@@ -82,7 +79,6 @@ public class ThreadPoolDemo {
         }
         CHECK_THREAD_POOL2.shutdown();
     }
-
 
     final void testFinal() {
 
@@ -136,16 +132,4 @@ public class ThreadPoolDemo {
             return "OK";
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
