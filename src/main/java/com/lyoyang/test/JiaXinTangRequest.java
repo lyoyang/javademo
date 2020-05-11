@@ -3,7 +3,6 @@ package com.lyoyang.test;
 import com.alibaba.fastjson.JSONObject;
 import com.lyoyang.utils.Des3Util;
 import com.lyoyang.utils.HmacSha256Utils;
-import com.lyoyang.utils.HttpsClientUtil;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
@@ -60,8 +59,8 @@ public class JiaXinTangRequest {
         HashMap<String, String> header = new HashMap<>();
         header.put("dealer-id", "000000100538113");
         header.put("request-id", "678678678678");
-        String res = HttpsClientUtil.sendPost(url, data, header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.sendPost(url, data, header);
+//        System.out.println(res);
     }
 
 
@@ -90,8 +89,8 @@ public class JiaXinTangRequest {
         HashMap<String, String> header = new HashMap<>();
         header.put("dealer-id", "000000100538113");
         header.put("request-id", "678678678678");
-        String res = HttpsClientUtil.sendPost(url, data, header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.sendPost(url, data, header);
+//        System.out.println(res);
     }
 
 
@@ -119,8 +118,8 @@ public class JiaXinTangRequest {
         HashMap<String, String> header = new HashMap<>();
         header.put("dealer-id", "000000100538113");
         header.put("request-id", "678678678678");
-        String res = HttpsClientUtil.sendPost(url, data, header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.sendPost(url, data, header);
+//        System.out.println(res);
     }
 
 
@@ -152,8 +151,8 @@ public class JiaXinTangRequest {
         String data = getEncryptData(params, true);
         url = url + "?" + data;
         Map<String, String> header = getHeader("000000001572907", "7657867868");
-        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
+//        System.out.println(res);
     }
 
     /**
@@ -168,8 +167,8 @@ public class JiaXinTangRequest {
         String data = getEncryptData(params, true);
         url = url + "?" + data;
         Map<String, String> header = getHeader("000000100538113", "7657867868");
-        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
+//        System.out.println(res);
     }
 
 
@@ -187,8 +186,8 @@ public class JiaXinTangRequest {
         params.put("channel", "银行卡");
         String data = getEncryptData(params, true);
         Map<String, String> header = getHeader("000000100538113", "7657867868");
-        String res = HttpsClientUtil.sendPost(url, data , header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.sendPost(url, data , header);
+//        System.out.println(res);
     }
 
 
@@ -206,8 +205,8 @@ public class JiaXinTangRequest {
         String data = getEncryptData(params, true);
         url = url + "?" + data;
         Map<String, String> header = getHeader("000000001572907", "7657867868");
-        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
+//        System.out.println(res);
     }
 
 
@@ -225,8 +224,8 @@ public class JiaXinTangRequest {
         params.put("amount", "2.00");
         String data = getEncryptData(params, true);
         Map<String, String> header = getHeader("000000100538113", "7657867868");
-        String res = HttpsClientUtil.sendPost(url, data , header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.sendPost(url, data , header);
+//        System.out.println(res);
     }
 
 
@@ -243,8 +242,8 @@ public class JiaXinTangRequest {
         String data = getEncryptData(params, true);
         url = url + "?" + data;
         Map<String, String> header = getHeader("000000001572907", "7657867868");
-        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
+//        System.out.println(res);
     }
 
 
@@ -261,8 +260,8 @@ public class JiaXinTangRequest {
         String data = getEncryptData(params, true);
         url = url + "?" + data;
         Map<String, String> header = getHeader("000000001572907", "7657867868");
-        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
-        System.out.println(res);
+//        String res = HttpsClientUtil.doGet(url, StandardCharsets.UTF_8.name(), header);
+//        System.out.println(res);
     }
 
 
