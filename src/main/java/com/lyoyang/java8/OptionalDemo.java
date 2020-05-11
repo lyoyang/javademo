@@ -18,6 +18,12 @@ public class OptionalDemo {
         return Optional.ofNullable(user).flatMap(User::getStudent).map(Student::getUsername).orElse("unknown");
     }
 
+    @Test
+    public void testOptionalTest() {
+        Optional<Object> empty = Optional.empty();
+        System.out.println(empty.isPresent());
+    }
+
 
 
 

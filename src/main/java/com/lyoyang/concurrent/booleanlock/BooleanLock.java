@@ -28,7 +28,6 @@ public class BooleanLock implements Lock {
             blockedList.remove(currentThread());
             this.locked = true;
             this.currentThread = currentThread();
-
         }
     }
 
