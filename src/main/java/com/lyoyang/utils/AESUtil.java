@@ -38,20 +38,10 @@ public class AESUtil {
         String secretKey = "c9997ab525a76a09";
         String keyForAgent = "8228b4a15cc32bd6";
         String keyForCross = "2acfc577a341e729";
-        String text = "{\"accDate\":\"2018-12-19\",\"amount\":\"50000\",\"bankCost\":\"0\",\"bankProfit\":\"0\",\"bankRebateIpaynow\":\"0\",\"fee\":\"2500\",\"feeChannel\":\"0\",\"feeRatio\":\"0.000000\",\"ipaynowAmount\":\"2395\",\"ipaynowRebateMch\":\"0\",\"mchId\":\"000000100518976\",\"settleAmount\":\"47500\",\"settleAmountChannel\":\"0\",\"settleDate\":\"2018-12-19\",\"settleFlag\":\"1\",\"spFee\":\"105\",\"transDate\":\"2018-12-18 10:18:08\",\"transId\":\"2018121711244134583266\"}";
-//        String miwen2 = encryptForDataCenter(secretKey, text);
-//        System.out.println("test len:" + String.valueOf(text.length()));
-//        String mingwen = decrypt(secretKey, miwen);
-//        int a = 2;
-//        String miwen2 = encryptForDataCenter(secretKey, text);
-//        System.out.println("密文为：" + miwen);
-        String miwen = "Nm9j5XNpD9mnEeIfhLLPgObW3NeQQ5Ws2x9+Zf3FBIDw4/Ac/F66bLNRQ03QFu42X87HN6eyojkpogsWUEqUFZhnOHdc9CI1PYBLf1FeWSMqXG7IdwJHRSSqScH1EYRAuezQTn2Pylzn4OzE8En8DYr+MTcrlIa58k0gS9XdotJfIeWprVk0UvnG3Ic1BSS4JoH9pwRLyOUX2lddCTWnK00lGmnuUAmkKCVfSEzk3snBuzFc6bdjTIhh5+CX/eFMavZhIIdyMgqrJbXe7TxljBrocC+STCYMRhcPguntrXHSeEQ01X6wdspsOaYrNRL6+WYd9UvrYbdL3UIwfXTbMb9sreb7cKE0tg68QJbC0gXLS/YMBT5IKIP9cRQHRHZVw4bjUqxxC01Lz0s0SC729z2JOo0OUhqJj453L3ux7/3FXrPt1OV912hq98Td/ouYaYFfo/rgRAsOAH6csfkKq8OmBvQFqARXu2Skr2AaWbRkxQxWAEJGWDstsd1GVCHcQEI/3/koJBlChEwzrt52Yg==";
-        String mmm = decrypt(secretKey, miwen);
-        System.out.println(mmm.length());
-        int a = 3;
-//        System.out.println(mmm.length());
-//        String mingwen = decrypt(secretKey, "Nm9j5XNpD9mnEeIfhLLPgMbUuiACi4R6NnDIjIw+LI0+sBPFEfAixFnkcQMsZapkYR8i2Nu2Fp6fPftAaiGnlEpzAOAD72czplp2eoub0FGhBVLzIX7RzjcBnhIhBGfTA5xCaTOKbQv6QrFTod0QL2ErkBy6NVrhjqxP8XsWt+L9F+qZkzttibZvOg6VgO4srWDRpFgPtyGNAQ8lVjtYDeTvbkKOX0UKKFX07xNA3SmJdgi7VKAbJg1p4qW5zNyh7Rn4g8oLCs935YTLnWvPoyT4+KkKRINVcFDIk27oWDXHyTFYO3cdDUMYdhvWxNovrqaWAH/teltEk5A8yikt1P/LNw42jzErdGa3XftlaEn87g4wDLXQgGo2fA7saNCIBwLtyqeUipR8zVKqdx4FcCQ0c+9TlDZ4mRz8UHMzAy1P/zhZWPy8nHo8BQjRe5IsuCU37tLhqeEpiHnwOnFqT6zD2bdUGiYwc0NB2ot5E1MWDW0D5zSylQShq4KIst7SM+7r2fGvBwBrM7lPyf301JXxky7E9s7YaVwQ/N5p1I8=");
-//        System.out.println("明文为：" + mingwen);
+        String text = "565765756756";
+        String miwen = encryptForDataCenter(secretKey, text);
+        String mingwen = decrypt(secretKey, miwen);
+        System.out.println(mingwen);
     }
 
     /**

@@ -1,6 +1,11 @@
 package com.lyoyang.concurrent;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class TestDemo {
 
@@ -31,10 +36,16 @@ public class TestDemo {
 
 
     public static void main(String[] args) throws InterruptedException {
-        long calc = calc();
-        System.out.println(calc);
-        Function<String, Integer> lamda = s -> s.length();
+        Random random = new Random();
+        int min = 60;
+        int max = 100;
+        for (int i = 0; i < 200; i++) {
+            int s = random.nextInt(max)%(max-min+1) + min;
+            System.out.println(s);
+        }
     }
+
+
 
 
 
