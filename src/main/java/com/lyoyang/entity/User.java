@@ -1,24 +1,19 @@
 package com.lyoyang.entity;
 
 
-import com.lyoyang.annotationdemo.InitValue;
 import lombok.*;
-import org.msgpack.annotation.Message;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Optional;
 
 @Data
 @AllArgsConstructor
-//@NoArgsConstructor
 @Builder
 public class User {
     private int id;
 
     private Integer age;
 
-    @InitValue(value = "bob")
     private String name;
     private String city;
 
