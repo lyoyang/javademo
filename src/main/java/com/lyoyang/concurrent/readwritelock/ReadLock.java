@@ -14,6 +14,8 @@ public class ReadLock implements Lock {
         this.readWriteLock = readWriteLock;
     }
 
+
+
     @Override
     public void lock() throws InterruptedException {
         synchronized (readWriteLock.getMUTEX()) {

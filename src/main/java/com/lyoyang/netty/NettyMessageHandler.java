@@ -27,7 +27,6 @@ public class NettyMessageHandler extends SimpleChannelUpstreamHandler {
         System.out.println("请求的URI为：" + uri);
         String returnMsg = "HELLO NETTY";
         writeResponse(e, returnMsg);
-
     }
 
     private void writeResponse(MessageEvent e, String responseContent) throws UnsupportedEncodingException {

@@ -25,6 +25,11 @@ public class BubbleSort {
     }
 
 
+    /**
+     * 动态规划
+     * @param arr
+     * @return
+     */
     public static int[] bubbleSortOptimize(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n; i++) {
