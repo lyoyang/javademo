@@ -3,6 +3,7 @@ package com.lyoyang.reactor;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -78,6 +79,71 @@ public class ReactorDemo {
         //只输出能被3整除的元素
         Flux.range(1, 100).bufferWhile(i -> i%3 == 0).subscribe(System.out::println);
     }
+
+
+    @Test
+    public void fluxWithFilter() {
+        Flux.range(1, 10).filter(i -> i%2 == 0).subscribe(System.out::println);
+    }
+
+
+    @Test
+    public void fluxWithWindow() {
+        Flux.range(1, 100).window(20).subscribe(System.out::println);
+    }
+
+    @Test
+    public void fluxWithReduce() {
+        Flux.range(1, 100).reduce((x, y) -> x + y).subscribe(System.out::println);
+        // give a default value
+        Flux.range(1, 100).reduceWith(() -> 100, (x, y) -> x + y).subscribe(System.out::println);
+    }
+
+    @Test
+    public void fluxWithMerge() {
+        Flux.merge(Flux.interval(Duration.of(100, ChronoUnit.MILLIS)).take(5), Flux.interval(Duration.of(150, ChronoUnit.MILLIS)).take(5))
+                .toStream().forEach(System.out::println);
+
+        Flux.merge(Flux.range(1, 3), Flux.range(4, 3))
+                .toStream().forEach(System.out::println);
+
+        Flux.mergeSequential(Flux.interval(Duration.of(100, ChronoUnit.MILLIS)).take(5), Flux.interval(Duration.of(150, ChronoUnit.MILLIS)).take(5))
+                .toStream().forEach(System.out::println);
+
+    }
+
+
+
+    @Test
+    public void fluxWithFlatMap() {
+        Flux.just(5, 10).flatMap(x -> Flux.just(x*10)).toStream()
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void msgProcess() {
+        Flux.just(1, 2).concatWith(Mono.error(new IllegalStateException()))
+                .onErrorReturn(-1)
+                .subscribe(System.out::println);
+
+    }
+
+    @Test
+    public void scheduler() {
+        Flux.create(sink -> {
+            sink.next(Thread.currentThread().getName());
+            sink.complete();
+        })
+                .publishOn(Schedulers.single())
+                .map(x -> String.format("[%s] %s", Thread.currentThread().getName(), x))
+                .publishOn(Schedulers.elastic())
+                .map(x -> String.format("[%s] %s", Thread.currentThread().getName(), x))
+                .subscribeOn(Schedulers.parallel())
+                .toStream()
+                .forEach(System.out::println);
+    }
+
+
 
 
 
