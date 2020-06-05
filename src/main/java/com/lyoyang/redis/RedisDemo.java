@@ -5,8 +5,10 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.params.SetParams;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 public class RedisDemo {
 
     private ExecutorService EXECUTOR = Executors.newFixedThreadPool(5);
+
+    private ScheduledExecutorService SCHEDULE = Executors.newScheduledThreadPool(2);
 
 
 
@@ -78,6 +82,30 @@ public class RedisDemo {
     private void unlock() {
         getJedis().del("lock:user");
     }
+
+
+    /**
+     * 队列
+     * 使用阻塞读写
+     */
+    @Test
+    public void testQueue() throws InterruptedException {
+
+        SCHEDULE.scheduleWithFixedDelay(() -> {
+            getJedis().rpush("times", System.currentTimeMillis() + "");
+        }, 1, 30, TimeUnit.SECONDS);
+
+        SCHEDULE.scheduleWithFixedDelay(() -> {
+            List<String> times = getJedis().blpop(1, "times");
+            System.out.println("--->>>" + times);
+        }, 1, 2, TimeUnit.SECONDS);
+
+        Thread.currentThread().join();
+
+
+    }
+
+
 
 
     private Jedis getJedis() {
