@@ -107,6 +107,26 @@ public class RedisDemo {
 
 
 
+    @Test
+    public void bitMap() {
+        getJedis().setbit("s", 1, "1");
+    }
+
+    @Test
+    public void hyperLogLog() {
+        Jedis jedis = getJedis();
+        for (int i = 0; i < 1000; i++) {
+            jedis.pfadd("members", "mem" + i);
+            long total = jedis.pfcount("members");
+//            if (total != i+1) {
+//                System.out.println("total=" + (i + 1));
+//                break;
+//            }
+        }
+        jedis.close();
+    }
+
+
 
     private Jedis getJedis() {
         return new Jedis("127.0.0.1", 6379);
