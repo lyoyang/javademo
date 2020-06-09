@@ -2,6 +2,7 @@ package com.lyoyang.redis;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import redis.clients.jedis.BitPosParams;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.params.SetParams;
 
@@ -10,6 +11,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author: Brian
@@ -109,21 +113,42 @@ public class RedisDemo {
 
     @Test
     public void bitMap() {
-        getJedis().setbit("s", 1, "1");
+        Jedis jedis = getJedis();
+        jedis.setbit("s", 1, "1");
+//        jedis.set("motan", "motan is good");
+//        assertThat(jedis.getbit("montan", 3), equalTo(Boolean.TRUE));
+        //统计1出现的次数
+        System.out.println(jedis.bitcount("motan"));
+        //统计指定范围内第一次出现的0或1
+        System.out.println(jedis.bitpos("motan", Boolean.TRUE));
+
     }
 
     @Test
     public void hyperLogLog() {
         Jedis jedis = getJedis();
+        jedis.del("members");
         for (int i = 0; i < 1000; i++) {
             jedis.pfadd("members", "mem" + i);
-            long total = jedis.pfcount("members");
-//            if (total != i+1) {
-//                System.out.println("total=" + (i + 1));
+//            long total = jedis.pfcount("members");
+//            if (total != (i+1)) {
+//                System.out.printf("%d--->%d", total, (i + 1));
 //                break;
 //            }
         }
+
+        System.out.println(jedis.pfcount("members"));
         jedis.close();
+
+    }
+
+
+    @Test
+    public void scan() {
+        Jedis jedis = getJedis();
+        for (int i = 0; i < 10000; i++) {
+            jedis.set("key" + i, i + "");
+        }
     }
 
 
