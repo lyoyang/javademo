@@ -5,6 +5,12 @@ import com.google.common.base.Preconditions;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * 使用LinkedList实现LRUCache
+ * @param <K>
+ * @param <V>
+ */
+
 public class LinkedListLRUCache<K, V> implements LRUCache<K,V> {
 
     private final int limit;

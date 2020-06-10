@@ -20,7 +20,7 @@ public class CyclicBarrierDemo {
 ////        }
 ////    });
 
-    private static final CyclicBarrier CYCLIC_BARRIER = new CyclicBarrier(8);
+    private static final CyclicBarrier CYCLIC_BARRIER = new CyclicBarrier(5);
 
     public static void main(String[] args) {
         for (int i = 0; i < 8; i++) {

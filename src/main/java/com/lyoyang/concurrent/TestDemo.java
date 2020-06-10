@@ -1,6 +1,7 @@
 package com.lyoyang.concurrent;
 
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import org.junit.Test;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -36,13 +37,14 @@ public class TestDemo {
 
 
     public static void main(String[] args) throws InterruptedException {
-        Random random = new Random();
-        int min = 60;
-        int max = 100;
-        for (int i = 0; i < 200; i++) {
-            int s = random.nextInt(max)%(max-min+1) + min;
-            System.out.println(s);
-        }
+//        Random random = new Random();
+//        int min = 60;
+//        int max = 100;
+//        for (int i = 0; i < 200; i++) {
+//            int s = random.nextInt(max)%(max-min+1) + min;
+//            System.out.println(s);
+//        }
+        System.out.println(calc());
     }
 
 

@@ -2,6 +2,7 @@ package com.lyoyang.guava.concurrent;
 
 import com.google.common.util.concurrent.Monitor;
 import com.google.common.util.concurrent.RateLimiter;
+import org.junit.Test;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Consumer;
@@ -14,8 +15,8 @@ import static java.lang.Thread.currentThread;
 public class BucketExample {
 
     private final ConcurrentLinkedQueue<Integer> container = new ConcurrentLinkedQueue<>();
-    private static final int BUCKET_LIMIT = 1000;
-    private static final RateLimiter limiter = RateLimiter.create(10);
+    private static final int BUCKET_LIMIT = 100;
+    private static final RateLimiter limiter = RateLimiter.create(0.1);
     private static final Monitor offMonitor = new Monitor();
     private static final Monitor pollMonitor = new Monitor();
 
@@ -43,4 +44,16 @@ public class BucketExample {
             }
         }
     }
+
+
+    @Test
+    public void testLimiter() {
+        //1s生成0.1个令牌，即10s生成1个令牌
+        RateLimiter mylimiter = RateLimiter.create(0.1);
+        for (int i = 0; i < 20; i++) {
+            double acquire = mylimiter.acquire();
+            System.out.println("acquire=" + acquire + "," + i);
+        }
+    }
+
 }

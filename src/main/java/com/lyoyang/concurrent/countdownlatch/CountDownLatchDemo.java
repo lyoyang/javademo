@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
  * @author: yangbing
  * @Date: 2020/5/11 10:26
  * @Description:
+ * 等待所有的子线程执行完毕后，才进行主线程的业务逻辑
  */
 public class CountDownLatchDemo {
 

@@ -99,6 +99,24 @@ public class ThreadPoolDemo {
     }
 
 
+
+    @Test
+    public void testFull() throws InterruptedException {
+        AtomicInteger atl = new AtomicInteger();
+        for (int i = 0; i < 20; i++) {
+            fixedThreadPool.execute(() -> {
+                System.out.println(Thread.currentThread() + "--->" + atl.getAndIncrement());
+                try {
+                    TimeUnit.SECONDS.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        Thread.currentThread().join();
+    }
+
+
     @Test
     public void doSubmitTask() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
@@ -116,6 +134,7 @@ public class ThreadPoolDemo {
 //            }
         }
     }
+
 
     static class TaskRunner implements Callable<String> {
 
