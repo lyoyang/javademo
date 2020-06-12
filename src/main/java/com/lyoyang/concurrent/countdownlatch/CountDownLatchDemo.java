@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
  * @author: yangbing
  * @Date: 2020/5/11 10:26
  * @Description:
+ * 不足：一次性的，计数器的值只能在构造器中初始化一次，使用完毕后不能再次使用
  */
 public class CountDownLatchDemo {
 

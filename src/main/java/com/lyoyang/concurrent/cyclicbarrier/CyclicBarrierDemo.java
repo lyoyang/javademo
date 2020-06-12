@@ -6,6 +6,7 @@ import java.util.concurrent.*;
  * @author: Brian
  * @Date: 2020/5/11 10:52
  * @Description:
+ * 具有reset功能，可以使用多次
  */
 public class CyclicBarrierDemo {
 

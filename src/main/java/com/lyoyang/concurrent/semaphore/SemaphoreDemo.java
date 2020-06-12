@@ -41,7 +41,7 @@ public class SemaphoreDemo {
             try {
                 semaphore.acquire();
                 System.out.println(Thread.currentThread().getName() + " are working...");
-                TimeUnit.MILLISECONDS.sleep(1000);
+                TimeUnit.SECONDS.sleep(1000);
                 semaphore.release();
             } catch (InterruptedException e) {
                 e.printStackTrace();
