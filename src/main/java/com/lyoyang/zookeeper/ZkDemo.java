@@ -11,7 +11,7 @@ public class ZkDemo {
 
 
     public static void main(String[] args) {
-        ZooKeeper zooKeeper = new ZooKeeper();
+//        ZooKeeper zooKeeper = new ZooKeeper();
     }
 
 
