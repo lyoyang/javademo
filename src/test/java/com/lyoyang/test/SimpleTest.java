@@ -13,8 +13,8 @@ public class SimpleTest {
 
     @Test
     public void calc() {
-        BigDecimal bigDecimal = new BigDecimal("456565.6586");
-        System.out.println(bigDecimal.divide(BigDecimal.valueOf(100L)).setScale(6));
+        BigDecimal bigDecimal = new BigDecimal("456565.65867876979");
+        System.out.println(bigDecimal.multiply(BigDecimal.valueOf(100L)).setScale(4, BigDecimal.ROUND_HALF_UP));
     }
 
 }
