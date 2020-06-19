@@ -22,6 +22,7 @@ public class MergeSort {
      * @return
      */
     public static int[] mergeSort(int[] arr, int left, int right) {
+        if (arr == null || arr.length < 2) return arr;
         if (left < right) {
             int mid = (left + right) / 2;
             arr = mergeSort(arr, left, mid);
