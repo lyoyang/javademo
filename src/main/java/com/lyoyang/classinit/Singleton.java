@@ -34,10 +34,12 @@ public class Singleton {
      * @param args
      */
     public static void main(String[] args) {
-        Singleton instance = Singleton.getInstance();
-        System.out.println(instance.x);
-        System.out.println(instance.y);
-        System.out.println(currentThread().getContextClassLoader());
+//        Singleton instance = Singleton.getInstance();
+//        System.out.println(instance.x);
+//        System.out.println(instance.y);
+//        System.out.println(currentThread().getContextClassLoader());
+
+        System.out.println(Dog.x);
     }
 
 
