@@ -1,9 +1,19 @@
 package com.lyoyang.test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.math.BigDecimal;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @author: Brian
@@ -14,15 +24,30 @@ import java.math.BigDecimal;
 public class SimpleTest {
 
     @Test
-    public void calc() {
+    public void calc() throws IOException {
 //        BigDecimal bigDecimal = new BigDecimal("456565.65867876979");
 //        System.out.println(bigDecimal.multiply(BigDecimal.valueOf(100L)).setScale(4, BigDecimal.ROUND_HALF_UP));
 //        getNUm();
 //        log.info("test msg [{}]", "12345");
 
-        String str = "56464564";
-        int h = str.hashCode();
-        System.out.println(h ^ (h >>> 16));
+//        String str = "56464564";
+//        int h = str.hashCode();
+//        System.out.println(h ^ (h >>> 16));
+        String str = "hello";
+
+//        Files.write(str, new File("D://pacypay/2020-07-03/temp.txt"), Charset.forName("GBK"));
+
+//        Files.write(Paths.get("D://pacypay/2020-07-03/temp.txt"), str.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);
+
+        FileUtils.write(new File("D://pacypay/2020-07-03/temp.txt"), str, Charset.forName("GBK"));
+//        RandomAccessFile randomAccessFile = new RandomAccessFile("D://pacypay/2020-07-03/temp.txt", "rwd");
+//        FileChannel channel = randomAccessFile.getChannel();
+//        ByteBuffer allocate = ByteBuffer.allocate(str.getBytes().length);
+//        allocate.put(str.getBytes());
+//        channel.write(allocate);
+//        allocate.clear();
+//        randomAccessFile.close();
+
 
     }
 
