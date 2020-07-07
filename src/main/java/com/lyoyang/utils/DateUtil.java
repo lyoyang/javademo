@@ -820,7 +820,7 @@ public class DateUtil extends Object {
      * @return 相差的天数
      */
     public static int selectDateDiff(String dateinfo) {
-        return selectDateDiff(dateinfo, getDate());
+        return selectDateDiff(getDate(), dateinfo);
     }
 
     /**

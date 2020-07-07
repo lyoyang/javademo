@@ -2,6 +2,8 @@ package com.lyoyang.netty.http;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -13,8 +15,10 @@ public class SSLContextFactory {
         char[] filePass = "123456".toCharArray();
         SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
         KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(Files.newInputStream(Paths.get("/home/yangbing/key/test.jks"), StandardOpenOption.READ), filePass);
+        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("cert/sChat.jks");
+        keyStore.load(resourceAsStream, filePass);
         KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+//        KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
         kmf.init(keyStore, filePass);
         sslContext.init(kmf.getKeyManagers(), null, null);
         return sslContext;

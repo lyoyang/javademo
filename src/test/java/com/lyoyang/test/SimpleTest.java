@@ -1,5 +1,6 @@
 package com.lyoyang.test;
 
+import com.lyoyang.utils.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -33,20 +34,11 @@ public class SimpleTest {
 //        String str = "56464564";
 //        int h = str.hashCode();
 //        System.out.println(h ^ (h >>> 16));
-        String str = "hello";
 
-//        Files.write(str, new File("D://pacypay/2020-07-03/temp.txt"), Charset.forName("GBK"));
-
-//        Files.write(Paths.get("D://pacypay/2020-07-03/temp.txt"), str.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);
-
-        FileUtils.write(new File("D://pacypay/2020-07-03/temp.txt"), str, Charset.forName("GBK"));
-//        RandomAccessFile randomAccessFile = new RandomAccessFile("D://pacypay/2020-07-03/temp.txt", "rwd");
-//        FileChannel channel = randomAccessFile.getChannel();
-//        ByteBuffer allocate = ByteBuffer.allocate(str.getBytes().length);
-//        allocate.put(str.getBytes());
-//        channel.write(allocate);
-//        allocate.clear();
-//        randomAccessFile.close();
+        String s1 = "2020-06-06";
+        String s2 = "2020-06-01";
+        int i = DateUtil.selectDateDiff(s2);
+        System.out.println(i);
 
 
     }
