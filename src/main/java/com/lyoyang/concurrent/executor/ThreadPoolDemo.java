@@ -38,9 +38,36 @@ public class ThreadPoolDemo {
 
     private static final AtomicInteger atomicInteger = new AtomicInteger(0);
 
+    private static Integer i = 0;
 
-    public static void main(String[] args) {
-        testThreadPool();
+
+    public static void main(String[] args) throws InterruptedException {
+//        testThreadPool();
+        User user = new User();
+        for (int k = 0; k < 10; k++) {
+            fixedThreadPool.execute(new Adder(user));
+        }
+
+        TimeUnit.SECONDS.sleep(5);
+        System.out.println(user.getId());
+
+    }
+
+
+    static class Adder implements Runnable {
+        private User user;
+
+        public Adder(User user) {
+            this.user = user;
+        }
+
+        @Override
+        public void run() {
+            for (int j = 0; j < 10; j++) {
+                int id = user.getId();
+                user.setId(++id);
+            }
+        }
     }
 
 
@@ -74,6 +101,7 @@ public class ThreadPoolDemo {
 
         try {
             CHECK_THREAD_POOL2.invokeAll(callables);
+
         } catch (Exception e) {
             LOG.error("主线程发生异常", e);
         }

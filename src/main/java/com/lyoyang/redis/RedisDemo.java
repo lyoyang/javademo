@@ -30,8 +30,17 @@ public class RedisDemo {
 
     @Test
     public void testString() {
-        String res = getJedis().set("subject", "PE");
-        System.out.println(res);
+//        String res = getJedis().set("subject", "PE");
+//        Jedis jedis = getJedis();
+        for (int i=0; i<200000; i++) {
+            int finalI = i;
+            new Thread(() -> {
+//                String name = getJedis().get("name");
+                String res = getJedis().set("key:" + finalI, finalI + "");
+//                System.out.println(Thread.currentThread().getName() + "-->" + name);
+                System.out.println(Thread.currentThread().getName() + "-->" + res);
+            }).start();
+        }
     }
 
     @Test
@@ -154,7 +163,7 @@ public class RedisDemo {
 
 
     private Jedis getJedis() {
-        return new Jedis("127.0.0.1", 6379);
+        return new Jedis("127.0.0.1", 6379, 600000);
     }
 
 

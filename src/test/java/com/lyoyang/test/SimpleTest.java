@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author: Brian
@@ -14,19 +17,23 @@ import java.math.BigDecimal;
 public class SimpleTest {
 
     @Test
-    public void calc() {
+    public void calc() throws InterruptedException {
 //        BigDecimal bigDecimal = new BigDecimal("456565.65867876979");
 //        System.out.println(bigDecimal.multiply(BigDecimal.valueOf(100L)).setScale(4, BigDecimal.ROUND_HALF_UP));
 //        getNUm();
 //        log.info("test msg [{}]", "12345");
 
-        String str = "56464564";
-        int h = str.hashCode();
-        System.out.println(h ^ (h >>> 16));
+        BlockingQueue blockingQueue = new LinkedBlockingQueue();
+//        blockingQueue.offer("1");
+//        blockingQueue.offer("2");
+//        blockingQueue.offer("3");
+//        blockingQueue.offer("4");
+        System.out.println(blockingQueue.poll());
+//        System.out.println(blockingQueue.take());
 
     }
 
-
+;
     @Test
     public void test() {
         BigDecimal ratio = new BigDecimal("0.0038");
