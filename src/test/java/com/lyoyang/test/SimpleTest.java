@@ -34,13 +34,7 @@ public class SimpleTest {
 //        String str = "56464564";
 //        int h = str.hashCode();
 //        System.out.println(h ^ (h >>> 16));
-
-        String s1 = "2020-06-06";
-        String s2 = "2020-06-01";
-        int i = DateUtil.selectDateDiff(s2);
-        System.out.println(i);
-
-
+        System.out.println(3 % 10);
     }
 
 
