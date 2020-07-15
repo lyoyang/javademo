@@ -3,8 +3,11 @@ package com.lyoyang.test;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.concurrent.BlockingDeque;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -17,7 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class SimpleTest {
 
     @Test
-    public void calc() throws InterruptedException {
+    public void calc() throws IOException {
 //        BigDecimal bigDecimal = new BigDecimal("456565.65867876979");
 //        System.out.println(bigDecimal.multiply(BigDecimal.valueOf(100L)).setScale(4, BigDecimal.ROUND_HALF_UP));
 //        getNUm();
@@ -30,10 +33,41 @@ public class SimpleTest {
 //        blockingQueue.offer("4");
         System.out.println(blockingQueue.poll());
 //        System.out.println(blockingQueue.take());
+//        String str = "56464564";
+//        int h = str.hashCode();
+//        System.out.println(h ^ (h >>> 16));
+        System.out.println(3 % 10);
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("hello");
+        linkedList.removeLast();
 
+        ArrayList<Integer> intes = new ArrayList<>();
+        intes.add(2);
+        intes.add(3);
+        intes.add(3);
+        intes.add(3);
+        intes.add(4);
+        Iterator<Integer> iterator = intes.iterator();
+        while (iterator.hasNext()) {
+            Integer next = iterator.next();
+            if (next.equals(3)) {
+//                intes.remove(next);
+                iterator.remove();
+            }
+        }
+//        for (int i = 0; i < intes.size(); i++) {
+//            if (intes.get(i).equals(3)) {
+//                intes.remove(i);
+//            }
+//        }
+
+        System.out.println(intes);
     }
 
-;
+
+
+
+
     @Test
     public void test() {
         BigDecimal ratio = new BigDecimal("0.0038");

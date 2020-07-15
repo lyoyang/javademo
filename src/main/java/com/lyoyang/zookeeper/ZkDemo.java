@@ -40,7 +40,7 @@ public class ZkDemo {
 
 
     private static void createAsync(ZooKeeper zk) {
-        zk.create("/async", "async".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL, new IStringCallBack(), "I am context");
+        zk.create("/async", "async".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT, new IStringCallBack(), "I am context");
     }
 
 
