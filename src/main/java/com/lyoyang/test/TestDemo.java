@@ -8,6 +8,8 @@ import java.util.*;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TestDemo {
 
@@ -67,6 +69,9 @@ public class TestDemo {
 
     public synchronized void test() {
         System.out.println("123");
+        String[] ddd = new String[]{"1"};
+        for (String s : ddd) {}
+
     }
 
 
