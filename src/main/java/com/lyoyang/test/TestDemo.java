@@ -1,7 +1,13 @@
 package com.lyoyang.test;
 
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.math.BigDecimal;
+import java.util.*;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,7 +15,7 @@ public class TestDemo {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        Random random = new Random();
 //        BigDecimal fee = new BigDecimal("0.0067");
 //        BigDecimal spFee = new BigDecimal("0.0035");
@@ -26,20 +32,48 @@ public class TestDemo {
 //            }
 //        }
 
-        ArrayList<String> list = new ArrayList<>();
-        list.add("2");
-        list.add("3");
-        list.add("3");
-        list.add("3");
-        list.add("4");
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals("3")) {
-                list.remove(i);
-            }
-        }
+        SynchronousQueue<Integer> synchronousQueue = new SynchronousQueue<>();
+//        synchronousQueue.put(2);
+//        System.out.println(synchronousQueue.take());
+//        synchronousQueue.put(3);
+//        synchronousQueue.put(4);
+//        synchronousQueue.add(4);
+//        synchronousQueue.offer(4);
+//        synchronousQueue.offer(3);
+//        System.out.println(synchronousQueue.take());
+//        System.out.println(synchronousQueue.take());
 
-        System.out.println(0x7fffffff);
+        new Thread(() -> {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    TimeUnit.SECONDS.sleep(5);
+                    synchronousQueue.put(i);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            try {
+                while (true) {
+                    System.out.println(synchronousQueue.take());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+
     }
+
+    public synchronized void test() {
+        System.out.println("123");
+        String[] ddd = new String[]{"1"};
+        for (String s : ddd) {}
+
+    }
+
 
 
 }
