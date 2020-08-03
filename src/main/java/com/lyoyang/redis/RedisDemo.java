@@ -123,13 +123,19 @@ public class RedisDemo {
     @Test
     public void bitMap() {
         Jedis jedis = getJedis();
-        jedis.setbit("s", 1, "1");
+        for (int i = 1; i <= 10; i++) {
+            boolean val = false;
+            if (i % 2 == 0) {
+                val = true;
+            }
+            jedis.setbit("online_user", i, val);
+        }
 //        jedis.set("motan", "motan is good");
 //        assertThat(jedis.getbit("montan", 3), equalTo(Boolean.TRUE));
         //统计1出现的次数
-        System.out.println(jedis.bitcount("motan"));
+//        System.out.println(jedis.bitcount("motan"));
         //统计指定范围内第一次出现的0或1
-        System.out.println(jedis.bitpos("motan", Boolean.TRUE));
+//        System.out.println(jedis.bitpos("motan", Boolean.TRUE));
 
     }
 
@@ -163,7 +169,7 @@ public class RedisDemo {
 
 
     private Jedis getJedis() {
-        return new Jedis("127.0.0.1", 6379, 600000);
+        return new Jedis("192.168.205.10", 6379, 600000);
     }
 
 

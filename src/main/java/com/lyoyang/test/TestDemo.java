@@ -63,17 +63,5 @@ public class TestDemo {
                 e.printStackTrace();
             }
         }).start();
-
-
     }
-
-    public synchronized void test() {
-        System.out.println("123");
-        String[] ddd = new String[]{"1"};
-        for (String s : ddd) {}
-
-    }
-
-
-
 }
