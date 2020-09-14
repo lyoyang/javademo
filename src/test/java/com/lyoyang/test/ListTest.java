@@ -1,5 +1,7 @@
 package com.lyoyang.test;
 
+import com.lyoyang.entity.Member;
+import com.lyoyang.utils.JDBCUtils;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,8 +14,8 @@ public class ListTest {
 
     @Test
     public void test1() {
-        List<String> list = Arrays.asList("1", "2", "3");
-        Arrays.copyOf(list.toArray(), list.size() + 1);
+//        List<String> list = Arrays.asList("1", "2", "3");
+//        Arrays.copyOf(list.toArray(), list.size() + 1);
     }
 
     @Test
@@ -34,9 +36,15 @@ public class ListTest {
 
     @Test
     public void testLinkedList() {
-        LinkedList<Integer> link = new LinkedList<>();
-        link.pop();
-        link.removeLast();
+//        LinkedList<Integer> link = new LinkedList<>();
+//        link.pop();
+//        link.removeLast();
+        String insertSql = "INSERT INTO `member` (mobile, phone) VALUES ('%s', '%s')";
+        String format = String.format(insertSql, "1234", "3456");
+        System.out.println(format);
+        String querySql = "SELECT *  FROM member where mobile = '%s'";
+        List<Member> query = JDBCUtils.query(String.format(querySql, "15735104203"), Member.class);
+        System.out.println(query);
     }
 
 
