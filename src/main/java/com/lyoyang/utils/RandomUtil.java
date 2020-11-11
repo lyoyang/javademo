@@ -141,17 +141,37 @@ public class RandomUtil {
     }
 
 
+    public static int getNotSimple(int len) {
+        Random rand = new Random();
+        int[] param = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        for (int i = param.length; i > 1; i--) {
+            int index = rand.nextInt(i);
+            int tmp = param[index];
+            param[index] = param[i - 1];
+            param[i - 1] = tmp;
+        }
+        int result = 0;
+        for (int i = 0; i < len; i++) {
+            result = result * 10 + param[i];
+        }
+        return result;
+    }
+
+
     public static void main(String[] args) {
         int channel = 34546456;// 测试因子比生产因子少1
-        System.out.println("返回一个定长的带因子的固定的随机字符串(只包含大小写字母、数字):" + generateStringByKey(32, channel));
-        System.out.println("返回一个定长的随机字符串(只包含大小写字母、数字):" + generateString(32));
-        System.out.println("返回一个定长的随机纯字母字符串(只包含大小写字母):" + generateMixString(10));
-        System.out.println("返回一个定长的随机纯大写字母字符串(只包含大小写字母):" + generateLowerString(10));
-        System.out.println("返回一个定长的随机纯小写字母字符串(只包含大小写字母):" + generateUpperString(10));
-        System.out.println("生成一个定长的纯0字符串:" + generateZeroString(10));
-        System.out.println("根据数字生成一个定长的字符串，长度不够前面补0:" + toFixdLengthString(123, 10));
+//        System.out.println("返回一个定长的带因子的固定的随机字符串(只包含大小写字母、数字):" + generateStringByKey(32, channel));
+//        System.out.println("返回一个定长的随机字符串(只包含大小写字母、数字):" + generateString(32));
+//        System.out.println("返回一个定长的随机纯字母字符串(只包含大小写字母):" + generateMixString(10));
+//        System.out.println("返回一个定长的随机纯大写字母字符串(只包含大小写字母):" + generateLowerString(10));
+//        System.out.println("返回一个定长的随机纯小写字母字符串(只包含大小写字母):" + generateUpperString(10));
+//        System.out.println("生成一个定长的纯0字符串:" + generateZeroString(10));
+//        System.out.println("根据数字生成一个定长的字符串，长度不够前面补0:" + toFixdLengthString(123, 10));
         int[] in = { 1, 2, 3, 4, 5, 6, 7 };
+        for (int i = 0; i < 20; i++) {
         System.out.println("每次生成的len位数都不相同:" + getNotSimple(in, 3));
+
+        }
     }
 
 
