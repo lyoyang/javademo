@@ -18,6 +18,8 @@ public class Student implements Cloneable{
     @Range(min = 5, max = 10, message = "名字范围5-10")
     private String username;
 
+    private boolean favorite;
+
     public Integer getId() {
         return id;
     }
@@ -42,6 +44,14 @@ public class Student implements Cloneable{
                 '}';
     }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
@@ -56,5 +66,7 @@ public class Student implements Cloneable{
         System.out.println(clone.getUsername());
         System.out.println(student.getUsername() == clone.getUsername());
     }
+
+
 
 }
