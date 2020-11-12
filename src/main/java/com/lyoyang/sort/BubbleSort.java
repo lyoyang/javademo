@@ -12,6 +12,9 @@ public class BubbleSort {
 
 
     public static int[] bubbleSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return arr;
+        }
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length - i -1; j++) {
                 if (arr[j] > arr[j+1]) {
@@ -25,6 +28,11 @@ public class BubbleSort {
     }
 
 
+    /**
+     * 动态规划
+     * @param arr
+     * @return
+     */
     public static int[] bubbleSortOptimize(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n; i++) {

@@ -14,6 +14,7 @@ public class QuickSort {
 
 
     public static int[] quickSort(int[] arr, int left, int right) {
+        if (arr == null || arr.length < 2) return arr;
         int center;
         if (left < right) {
 //            center = partionLeft(arr, left, right);

@@ -17,8 +17,6 @@ public class ReferenceDemo {
         makeHeapNotEnough();
         System.out.println("通过堆内存不足触发GC:" + userSoftReference.get());
         System.out.println("通过堆内存不足触发GC:" + referenceQueue.poll());
-
-
     }
 
 

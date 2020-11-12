@@ -44,6 +44,7 @@ public class CountSort {
      * @return
      */
     public static int[] countSort2(int[] arr) {
+        if (arr == null || arr.length < 2) return arr;
         int max= arr[0];
         int min = arr[0];
         for (int i = 1; i < arr.length; i++) {

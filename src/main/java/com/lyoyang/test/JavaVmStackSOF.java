@@ -1,5 +1,9 @@
 package com.lyoyang.test;
 
+/**
+ * StackOverFlow 栈深度
+ * -Xss设置栈深度
+ */
 public class JavaVmStackSOF {
 
     private int stackLength = 1;

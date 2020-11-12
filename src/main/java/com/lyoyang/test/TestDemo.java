@@ -1,109 +1,67 @@
 package com.lyoyang.test;
 
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.base.Stopwatch;
-import com.google.common.base.Strings;
-import com.lyoyang.entity.AdditionalRequestDto;
-import com.lyoyang.entity.Student;
-import com.lyoyang.entity.User;
-import com.lyoyang.utils.AESUtil;
-import com.lyoyang.utils.DateUtil;
-import org.junit.Test;
 
-import java.lang.reflect.Field;
+import com.alibaba.fastjson.JSONObject;
+
 import java.math.BigDecimal;
-import java.text.MessageFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TestDemo {
 
-    @Test
-    public void testCast() {
-        Date transDate = DateUtil.getDateFromString("2019-05-13 23:59:59", DateUtil.FORMAT_DATETIME);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(transDate);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        //范围开始23:00
-        calendar.add(Calendar.HOUR_OF_DAY, -1);
-        calendar.add(Calendar.DATE, 1);
-        Date chAccDateStart = DateUtil.getDateTimeFromDate(calendar.getTime(), DateUtil.FORMAT_DATETIME);
-        if(transDate.compareTo(chAccDateStart) >= 0) {
-            calendar.add(Calendar.DATE, 1);
-            System.out.println(DateUtil.getStringFromDate(calendar.getTime(), DateUtil.FORMAT_DATE));;
-        } else {
-            System.out.println(DateUtil.getStringFromDate(transDate, DateUtil.FORMAT_DATE));
-        }
-    }
-
-    @Test
-    public void testMessageFormat() {
-        System.out.println(BigDecimal.valueOf(400L).negate().toPlainString());
-        String msg = "oh,{0} is ''a'' pig";
-        String format = MessageFormat.format(msg, "lisi");
-        System.out.println(format);
-        System.out.println(MessageFormat.format("{0}", 12345678.9));
-        System.out.println(MessageFormat.format("oh, {0, number, #.##} is a good number", Double.valueOf("3.23445")));
-    }
 
 
+    public static void main(String[] args) throws InterruptedException {
+//        Random random = new Random();
+//        BigDecimal fee = new BigDecimal("0.0067");
+//        BigDecimal spFee = new BigDecimal("0.0035");
+//        for (int i = 0 ; i < 100; i++) {
+//            int data = random.nextInt(9999999);
+//            BigDecimal amount = new BigDecimal(Integer.toString(data));
+//            BigDecimal feeValue = amount.multiply(fee).setScale(0, BigDecimal.ROUND_HALF_UP);
+//            BigDecimal spValue = amount.multiply(spFee).setScale(0, BigDecimal.ROUND_HALF_UP);
+//            BigDecimal bigDecimal = feeValue.subtract(spValue);
+//            BigDecimal distanceValue = amount.multiply(fee.subtract(spFee)).setScale(0, BigDecimal.ROUND_HALF_UP);
+//            if (bigDecimal.compareTo(distanceValue) != 0) {
+//                System.out.printf("amount=%s,no equal.distance=%s", amount, (bigDecimal.subtract(distanceValue)));
+//                System.out.println();
+//            }
+//        }
 
-    @Test
-    public void testClone() {
-        User jim = User.builder().name("jim").build();
-        User bob = User.builder().name("bob").build();
-        List<User> list = new ArrayList<>();
-//        list.add(jim);
-//        list.add(bob);
-        List<String> collect = list.stream().map(User::getName).collect(Collectors.toList());
-        System.out.println(collect.toString());
+        SynchronousQueue<Integer> synchronousQueue = new SynchronousQueue<>();
+//        synchronousQueue.put(2);
+//        System.out.println(synchronousQueue.take());
+//        synchronousQueue.put(3);
+//        synchronousQueue.put(4);
+//        synchronousQueue.add(4);
+//        synchronousQueue.offer(4);
+//        synchronousQueue.offer(3);
+//        System.out.println(synchronousQueue.take());
+//        System.out.println(synchronousQueue.take());
 
-    }
-
-    @Test
-    public void testInvoke() throws ClassNotFoundException {
-        long instantNow = Instant.now().toEpochMilli();
-        System.out.println(instantNow);
-
-
-    }
-
-
-
-    public void testSync(String mchId) throws InterruptedException {
-        synchronized (mchId) {
-            System.out.println("this is " + mchId);
-            TimeUnit.SECONDS.sleep(10);
-            System.out.println("completed " + mchId);
-        }
-    }
-
-
-    public static void main(String[] args) {
-        TestDemo testDemo = new TestDemo();
-        IntStream.range(0, 2).forEach(a -> {
-            String mchId = "12345";
-            new Thread(() -> {
-                try {
-                    testDemo.testSync(mchId + a);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        new Thread(() -> {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    TimeUnit.SECONDS.sleep(5);
+                    synchronousQueue.put(i);
                 }
-            }).start();
-        });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            try {
+                while (true) {
+                    System.out.println(synchronousQueue.take());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
-
-
-
-
-
 }

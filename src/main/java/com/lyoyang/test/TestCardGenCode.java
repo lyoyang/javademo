@@ -13,18 +13,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Hashtable;
 
-/**
- * @Description:
- * @User zhaoyf
- * @DateTime 2018/10/30 17:29
- */
+
+
 public class TestCardGenCode {
 
     public static void main(String[] args) throws Exception {
-        //36242-36542
-       /* for(int i=47767;i<47867 ;i++){
-            TestCardGenCode.mkCard(i+"");
-        }*/
         TestCardGenCode.mkCard(25+"");
     }
 
@@ -78,6 +71,5 @@ public class TestCardGenCode {
         bigGraphics.drawString(fileContent, fontX, fontY);
         bigGraphics.dispose();
         ImageIO.write(big, format, outputFile);
-
     }
 }

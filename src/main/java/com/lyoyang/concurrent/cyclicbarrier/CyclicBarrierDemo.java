@@ -6,6 +6,7 @@ import java.util.concurrent.*;
  * @author: Brian
  * @Date: 2020/5/11 10:52
  * @Description:
+ * 具有reset功能，可以使用多次
  */
 public class CyclicBarrierDemo {
 
@@ -20,7 +21,7 @@ public class CyclicBarrierDemo {
 ////        }
 ////    });
 
-    private static final CyclicBarrier CYCLIC_BARRIER = new CyclicBarrier(8);
+    private static final CyclicBarrier CYCLIC_BARRIER = new CyclicBarrier(5);
 
     public static void main(String[] args) {
         for (int i = 0; i < 8; i++) {

@@ -3,13 +3,15 @@ package com.lyoyang.entity;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Optional;
 
 @Data
 @AllArgsConstructor
 @Builder
-public class User {
+@ToString
+public class User implements Serializable {
     private int id;
 
     private Integer age;

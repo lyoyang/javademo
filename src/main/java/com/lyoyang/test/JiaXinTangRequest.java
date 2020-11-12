@@ -88,7 +88,7 @@ public class JiaXinTangRequest {
         String data = getEncryptData(params, true);
         HashMap<String, String> header = new HashMap<>();
         header.put("dealer-id", "000000100538113");
-        header.put("request-id", "678678678678");
+        header.put("request-id", "678678678678787");
 //        String res = HttpsClientUtil.sendPost(url, data, header);
 //        System.out.println(res);
     }
