@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -21,7 +22,6 @@ import java.util.function.Function;
 public class ReactorDemo {
 
 
-
     @Test
     public void simpleFluxCreate() throws InterruptedException {
         Flux.just("Hello", "World").subscribe(System.out::print);
@@ -30,6 +30,7 @@ public class ReactorDemo {
         Flux.range(1, 10).subscribe(System.out::println);
         //从0开始递增的Long对象的序列，每格10s产生一个，会并行计算，线程都是守护线程
         Flux.interval(Duration.of(1, ChronoUnit.SECONDS)).subscribe(System.out::println);
+        TimeUnit.SECONDS.sleep(1000);
     }
 
     @Test

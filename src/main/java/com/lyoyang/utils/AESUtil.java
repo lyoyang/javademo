@@ -35,11 +35,13 @@ public class AESUtil {
 
     public static void main(String[] args) {
 
-        String secretKey = "c9997ab525a76a09";
-        String keyForAgent = "8228b4a15cc32bd6";
-        String keyForCross = "2acfc577a341e729";
-        String text = "565765756756";
-        String miwen = encryptForDataCenter(secretKey, text);
+//        String secretKey = "c9997ab525a76a09";
+        String secretKey = "99+B3x6i8Zg79WYt/N04ZQ==";
+//        String keyForAgent = "8228b4a15cc32bd6";
+//        String keyForCross = "2acfc577a341e729";
+        String text = "{\"goods_type\":\"1\",\"out_trade_no\":\"201117164212305100000\",\"product_code\":\"FAST_INSTANT_TRADE_PAY\",\"subject\":\"5G消息体验套餐\",\"timeout_express\":\"10m\",\"total_amount\":\"100.00\"}";
+//        String miwen = encryptForDataCenter(secretKey, text);
+        String miwen = encrypt(secretKey, text);
         String mingwen = decrypt(secretKey, miwen);
         System.out.println(mingwen);
     }
