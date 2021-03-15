@@ -1,7 +1,9 @@
 package com.lyoyang.test;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.Stopwatch;
 import com.lyoyang.guava.cache.Student;
+import org.apache.commons.lang3.time.StopWatch;
 import org.fluentd.logger.FluentLogger;
 import org.junit.Test;
 
@@ -92,7 +94,43 @@ public class ListTest {
 
     }
 
+    @Test
+    public void testIterator() {
+        ArrayList<Integer> list = new ArrayList(20000);
+        Stopwatch s1 = Stopwatch.createStarted();
+        for (int i = 0; i < 20000; i++) {
+            list.add(i);
+        }
+        System.out.println("add array:" + s1.stop());
 
+        Stopwatch started = Stopwatch.createStarted();
+        printList(list);
+        System.out.println("arrayList:" + started.stop());
+
+        LinkedList<Integer> lk = new LinkedList<>();
+        Stopwatch s2 = Stopwatch.createStarted();
+        for (int i = 0; i < 20000; i++) {
+            lk.add(i);
+        }
+        System.out.println("link add:" + s2.stop());
+        Stopwatch st = Stopwatch.createStarted();
+        printLinkedList(lk);
+        System.out.println("lk:" + st.stop());
+
+    }
+
+    private void printList(ArrayList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i);
+        }
+    }
+
+
+    private void printLinkedList(LinkedList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i);
+        }
+    }
 
 
 }
