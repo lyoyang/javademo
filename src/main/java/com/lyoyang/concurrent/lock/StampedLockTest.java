@@ -1,5 +1,7 @@
 package com.lyoyang.concurrent.lock;
 
+import netscape.security.UserTarget;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,14 +25,16 @@ public class StampedLockTest {
     }
 
     private static void read() {
-        long stamped = -1;
+            //乐观读操作
+        long stamped = lock.tryOptimisticRead();
         try {
+            if (!lock.validate(stamped)) {
+                //升级为悲观读
+                stamped = lock.readLock();
+            }
             stamped = lock.readLock();
             Optional.of(DATA.stream().map(String::valueOf).collect(Collectors.joining("#", "R-", "")))
                     .ifPresent(System.out::println);
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } finally {
             lock.unlockRead(stamped);
         }
