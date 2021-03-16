@@ -2,6 +2,9 @@ package com.lyoyang.algorithm.code_141;
 
 import com.lyoyang.offfer.ListNode;
 
+/**
+ * 链表是否有环
+ */
 public class Solution {
 
     public boolean hasCycle(ListNode head) {

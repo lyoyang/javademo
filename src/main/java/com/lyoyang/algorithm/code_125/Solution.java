@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * 回文字符串判断
+ */
 public class Solution {
 
     public boolean isPalindrome(String s) {

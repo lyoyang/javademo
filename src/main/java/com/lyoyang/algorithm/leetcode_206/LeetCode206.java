@@ -13,7 +13,6 @@ import com.lyoyang.offfer.ListNode;
 
 public class LeetCode206 {
 
-
     public ListNode reverseList(ListNode head) {
         ListNode currentNode = head;
         ListNode preNode = null;

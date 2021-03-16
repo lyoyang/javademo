@@ -1,7 +1,10 @@
-package com.lyoyang.algorithm.code_7;
+package com.lyoyang.algorithm.code_20;
 
 import java.util.*;
 
+/**
+ * 有效的括号
+ */
 public class Solution {
 
     public boolean isValid(String s) {
@@ -22,6 +25,24 @@ public class Solution {
         }
         return list.isEmpty();
     }
+
+
+    public boolean isValid3(String s) {
+       Map<Character, Character> map = new HashMap<>();
+       map.put(')', '(');
+       map.put('}', '{');
+       map.put(']', '[');
+        LinkedList<Object> list = new LinkedList<>();
+        for (char ch : s.toCharArray()) {
+           if (map.containsValue(ch)) {
+               list.push(ch);
+           } else if (list.isEmpty() || !map.get(ch).equals(list.pop())) {
+               return false;
+           }
+       }
+        return list.isEmpty();
+    }
+
 
     public boolean isValid2(String s) {
         if (s.isEmpty()) {

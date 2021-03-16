@@ -1,6 +1,8 @@
 package com.lyoyang.algorithm.leetcode_1;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 两数之和
@@ -19,11 +21,29 @@ public class Solution {
         return null;
     }
 
+    public int[] twoSum2(int[] nums, int target) {
+      Map<Integer, Integer> map = new HashMap<>();
+      for (int i= 0; i < nums.length; i++) {
+          if (map.containsKey(target - nums[i])) {
+              return new int[]{map.get(target - nums[i]), i};
+          }
+          map.put(nums[i], i);
+      }
+      return null;
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] nums = new int[]{1, 4, 5, 8};
         int[] ints = solution.twoSum(nums, 5);
-        Arrays.stream(ints).forEach(System.out::println);
+        int[] ints2 = solution.twoSum2(nums, 5);
+//        Arrays.stream(ints).forEach(System.out::println);
+        Arrays.stream(ints2).forEach(System.out::println);
     }
 
 }
